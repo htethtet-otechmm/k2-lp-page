@@ -1,0 +1,404 @@
+/** @format */
+@use "../variables.scss" as *;
+@use "../functions" as fn;
+@use "../mixins" as mixin;
+
+/* 共通：セクション見出し（下線アクセント） */
+.field_lp_heading {
+  margin: 0 auto fn.rem(44);
+  padding-bottom: fn.rem(12);
+  width: fit-content;
+  font-size: clamp(fn.rem(24), 4vw, fn.rem(36));
+  font-weight: 900;
+  color: var(--color_text);
+  text-align: center;
+  border-bottom: fn.rem(4) solid var(--color_field);
+}
+
+/* 共通：CTAグループ（注記＋ボタン）を全セクションで使い回す */
+.field_lp_cta {
+  margin-top: fn.rem(40);
+  text-align: center;
+
+  & .field_lp_cta_note {
+    margin-bottom: fn.rem(14);
+    padding: fn.rem(6) fn.rem(16) fn.rem(6) fn.rem(13);
+    display: inline-flex;
+    align-items: center;
+    gap: fn.rem(6);
+    font-size: fn.rem(14);
+    font-weight: 700;
+    color: var(--color_field);
+    background: color-mix(in srgb, var(--color_field) 8%, #fff);
+    border: fn.rem(1) solid color-mix(in srgb, var(--color_field) 30%, #fff);
+    border-radius: fn.rem(999);
+  }
+
+  & .field_lp_cta_note::before {
+    content: "✓";
+    font-size: fn.rem(12);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--color_field);
+  }
+
+  & .field_lp_cta_buttons {
+    display: flex;
+    gap: fn.rem(14);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  & .field_lp_cta_buttons .button {
+    min-width: fn.rem(240);
+    justify-content: center;
+  }
+}
+
+/* CTAを濃色背景に置くときの差し替え */
+.field_lp_cta_on_dark .field_lp_cta_note {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.field_lp_cta_on_dark .field_lp_cta_note::before {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ① ヒーロー（左：テキスト／右：画像） */
+.field_lp_hero {
+  padding: fn.rem(64) 0;
+  background: var(--color_bg_soft);
+  overflow: hidden;
+
+  & .field_lp_hero_inner {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: fn.rem(44);
+    align-items: center;
+  }
+
+  & .field_lp_hero_label {
+    margin-bottom: fn.rem(14);
+    font-size: fn.rem(15);
+    font-weight: 700;
+    color: var(--color_sub_text);
+  }
+
+  & .field_lp_hero_logo {
+    margin-bottom: fn.rem(22);
+    height: 5rem;
+    width: auto;
+  }
+
+  & .field_lp_hero_title {
+    margin-bottom: fn.rem(16);
+    font-size: clamp(fn.rem(26), 3.4vw, fn.rem(40));
+    font-weight: 900;
+    line-height: 1.35;
+    color: var(--color_text);
+    word-break: keep-all;
+  }
+
+  & .field_lp_hero_title_accent {
+    margin-bottom: fn.rem(6);
+    display: block;
+    font-size: 0.6em;
+    color: var(--color_field);
+  }
+
+  & .field_lp_hero_lead {
+    margin-bottom: fn.rem(32);
+    font-size: clamp(fn.rem(15), 2.4vw, fn.rem(19));
+    color: var(--color_sub_text);
+    word-break: keep-all;
+  }
+
+  & .field_lp_hero_screen img {
+    width: 100%;
+    height: auto;
+    border-radius: fn.rem(14);
+  }
+
+  /* ヒーロー内のCTAは左寄せ */
+  & .field_lp_cta {
+    margin-top: fn.rem(32);
+    text-align: left;
+  }
+
+  & .field_lp_cta_buttons {
+    justify-content: flex-start;
+  }
+}
+
+.relation_arrow_head {
+  display: none;
+}
+
+/* ② 建工管理とは（左：テキスト／右：画像） */
+.field_lp_intro {
+  padding: fn.rem(80) 0;
+
+  & .field_lp_intro_inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: fn.rem(32);
+  }
+
+  & .field_lp_intro_body p {
+    margin-bottom: fn.rem(18);
+    font-size: fn.rem(19);
+    line-height: 1.95;
+    color: var(--color_text);
+  }
+
+  & .field_lp_intro_body p:last-child {
+    margin-bottom: 0;
+  }
+
+  & .field_lp_intro_screen img,
+  & .field_lp_intro_screen video {
+    width: 100%;
+    height: auto;
+    border-radius: fn.rem(14);
+  }
+}
+
+/* ③ 一人工以下の金額で〜（機能アイコン一覧） */
+.field_lp_value {
+  padding: fn.rem(80) 0;
+  background: var(--color_bg_soft);
+
+  & .field_lp_value_lead {
+    margin: 0 auto fn.rem(44);
+    max-width: fn.rem(720);
+    font-size: fn.rem(18);
+    color: var(--color_text);
+    text-align: center;
+  }
+
+  & .field_lp_feature_grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: fn.rem(18);
+  }
+
+  & .field_lp_feature_item {
+    padding: fn.rem(26) fn.rem(18);
+    background: #fff;
+    border: fn.rem(1) solid var(--color_sub);
+    border-radius: fn.rem(14);
+    text-align: center;
+  }
+
+  & .field_lp_feature_icon {
+    margin: 0 auto fn.rem(14);
+    width: fn.rem(56);
+    height: fn.rem(56);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color_field_light);
+    border-radius: 50%;
+
+    & img {
+      width: fn.rem(30);
+      height: fn.rem(30);
+    }
+  }
+
+  & .field_lp_feature_item p {
+    font-size: fn.rem(15);
+    font-weight: 700;
+    color: var(--color_text);
+  }
+}
+
+/* ④ 現場のプロが作った（濃色バンド） */
+.field_lp_reason {
+  padding: fn.rem(76) 0;
+  background: linear-gradient(
+    135deg,
+    var(--color_main) 0%,
+    var(--color_main_dark) 100%
+  );
+  color: #fff;
+
+  & .field_lp_reason_inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: fn.rem(44);
+    align-items: center;
+  }
+
+  & .field_lp_reason_title {
+    margin-bottom: fn.rem(20);
+    font-size: clamp(fn.rem(22), 3.4vw, fn.rem(32));
+    font-weight: 900;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+
+  & .field_lp_reason_lead {
+    margin-bottom: fn.rem(26);
+    font-size: fn.rem(16);
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  & .field_lp_reason_points {
+    margin-bottom: fn.rem(24);
+    list-style: none;
+  }
+
+  & .field_lp_reason_points li {
+    margin-bottom: fn.rem(14);
+    padding-left: fn.rem(32);
+    font-size: fn.rem(16);
+    position: relative;
+  }
+
+  & .field_lp_reason_points li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 900;
+    color: #fff;
+  }
+
+  & .field_lp_reason_points strong {
+    display: block;
+    font-size: fn.rem(18);
+    color: var(--color_matching);
+  }
+
+  & .field_lp_reason_closing {
+    font-size: fn.rem(17);
+    font-weight: 700;
+  }
+
+  & .field_lp_reason_image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: fn.rem(14);
+  }
+
+  & .field_lp_reason_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* ⑤ 導入事例：見出しはfield_lp_heading、グリッドは既存.cases_gridを使い回す */
+
+/* ⑥ 導入支援 */
+.field_lp_support {
+  padding: fn.rem(80) 0;
+  background: var(--color_bg_soft);
+
+  & .field_lp_support_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: fn.rem(22);
+  }
+
+  & .field_lp_support_item {
+    padding: fn.rem(32) fn.rem(24);
+    background: #fff;
+    border-radius: fn.rem(16);
+    text-align: center;
+  }
+
+  & .field_lp_support_icon {
+    margin: 0 auto fn.rem(16);
+    width: fn.rem(64);
+    height: fn.rem(64);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color_field_light);
+    border-radius: 50%;
+
+    & img {
+      width: fn.rem(34);
+      height: fn.rem(34);
+    }
+  }
+
+  & .field_lp_support_item h3 {
+    margin-bottom: fn.rem(10);
+    font-size: fn.rem(18);
+    font-weight: 800;
+    color: var(--color_text);
+  }
+
+  & .field_lp_support_item p {
+    font-size: fn.rem(14);
+    line-height: 1.8;
+    color: var(--color_sub_text);
+  }
+}
+
+/* ダークモード：明色背景のセクションを暗色へ差し替え */
+[data-theme="dark"] .field_lp_hero,
+[data-theme="dark"] .field_lp_value,
+[data-theme="dark"] .field_lp_support {
+  background: #13131f;
+}
+
+[data-theme="dark"] .field_lp_feature_item,
+[data-theme="dark"] .field_lp_support_item,
+[data-theme="dark"] .field_lp_cta .field_lp_cta_note {
+  background: #1e1e2e;
+}
+
+/* レスポンシブ：中間幅は2カラム */
+@media (max-width: fn.rem(1024)) {
+  .field_lp_feature_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* レスポンシブ：スマホは1カラム */
+@media (max-width: fn.rem(768)) {
+  .field_lp_hero_inner,
+  .field_lp_intro_inner,
+  .field_lp_support_grid,
+  .field_lp_reason_inner {
+    grid-template-columns: 1fr;
+  }
+
+  .field_lp_hero .field_lp_hero_logo {
+    width: 80%;
+  }
+
+  .field_lp_cta_buttons .button {
+    width: 100%;
+  }
+
+  .field_lp_value .field_lp_feature_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field_lp_reason .field_lp_reason_inner {
+    grid-template-columns: 1fr;
+  }
+
+  .field_lp_support .field_lp_support_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .relation_efficiency {
+    background-color: rgb(253, 253, 217);
+    padding: fn.rem(20);
+  }
+
+      .relation_pair {
+        background: #f2f2f2;
+        padding: fn.rem(20);
+      }
+}

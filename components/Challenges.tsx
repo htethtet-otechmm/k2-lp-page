@@ -35,7 +35,9 @@ export default function Challenges() {
           {problems.map(([number, icon, title, description]) => (
             <article className="problem_item" key={number}>
               <div className="problem_number">{number}</div>
-              <div className="problem_icon"><Icon name={icon as "document" | "group"} /></div>
+              <div className="problem_icon">
+                <Icon name={icon as "document" | "group"} />
+              </div>
               <div className="problem_title">{title}</div>
               <div className="problem_description">{description}</div>
             </article>

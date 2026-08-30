@@ -1,0 +1,239 @@
+/** @format */
+@use "variables.scss" as *;
+@use "functions" as fn;
+@use "mixins" as mixin;
+
+/* React component equivalents for presentation-only inline styles in the source HTML. */
+.hero_badge_icon {
+  width: fn.rem(20);
+  color: #fff;
+  font-size: fn.rem(19);
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+}
+.service_icon svg {
+  display: block;
+  width: fn.rem(32);
+  height: fn.rem(32);
+}
+.problem_icon svg {
+  display: block;
+  width: fn.rem(28);
+  height: fn.rem(28);
+}
+.relation_circle_icon svg {
+  display: block;
+  width: fn.rem(28);
+  height: fn.rem(28);
+}
+.relation_database .relation_circle_icon svg {
+  width: fn.rem(22);
+  height: fn.rem(22);
+}
+.side_icon svg {
+  display: block;
+  width: fn.rem(16);
+  height: fn.rem(16);
+}
+.sns_icon svg {
+  display: block;
+  width: fn.rem(20);
+  height: fn.rem(20);
+  margin: 0 auto;
+}
+.dark_mode_toggle svg {
+  display: block;
+  width: fn.rem(18);
+  height: fn.rem(18);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.section,
+.problems,
+.relation_section,
+.before_after_section,
+.support_section,
+.footer_cta_bar {
+  scroll-margin-top: fn.rem(64);
+}
+.hero_tab_panels {
+  width: 100%;
+  max-width: fn.rem(680);
+}
+.hero_tab_panels .screen_panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1199 / 620;
+  object-fit: contain;
+}
+.route_page .hero_slider_wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+.side_button {
+  text-decoration: none;
+}
+.navigation_hamburger,
+.navigation_overlay {
+  border: 0;
+}
+.dark_mode_toggle {
+  color: inherit;
+}
+.icon_sprite {
+  display: none;
+}
+.relation_efficiency,
+.relation_growth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: fn.rem(12);
+}
+.relation_pair {
+  display: flex;
+  gap: fn.rem(14);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.relation_circle_compact {
+  width: fn.rem(170);
+  height: fn.rem(170);
+}
+.relation_down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: fn.rem(4) 0;
+}
+.relation_down i,
+.relation_down_stem {
+  display: block;
+  width: fn.rem(2);
+  height: fn.rem(18);
+  opacity: 0.3;
+}
+.relation_down_stem.is_field {
+  background: var(--color_field);
+}
+.relation_down i {
+  background: var(--color_field);
+}
+.relation_down_stem.is_sales {
+  background: var(--color_sales);
+}
+.relation_down b,
+.relation_down_tip {
+  width: 0;
+  height: 0;
+  border-left: fn.rem(5) solid transparent;
+  border-right: fn.rem(5) solid transparent;
+}
+.relation_down_tip.is_field {
+  border-top: fn.rem(7) solid rgba(59, 111, 189, 0.3);
+}
+.relation_down_tip.is_sales {
+  border-top: fn.rem(7) solid rgba(72, 159, 70, 0.3);
+}
+.relation_down.sales i {
+  background: var(--color_sales);
+}
+.relation_down.sales b {
+  border-top-color: rgba(72, 159, 70, 0.3);
+}
+.relation_database {
+  width: fn.rem(160);
+  height: fn.rem(100);
+  border-radius: fn.rem(12);
+}
+.relation_database .relation_circle_sub {
+  font-size: fn.rem(11);
+}
+.relation_database_subtitle {
+  font-size: fn.rem(11);
+}
+.relation_db_label {
+  font-size: fn.rem(14);
+  text-align: center;
+}
+.relation_arrow {
+  padding: 0 fn.rem(20) fn.rem(60);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: fn.rem(6);
+}
+.relation_arrow_shape {
+  display: flex;
+  align-items: center;
+  gap: fn.rem(4);
+}
+.relation_arrow_shape i,
+.relation_arrow_line {
+  display: block;
+  height: fn.rem(2);
+  width: fn.rem(40);
+  background: #ccd;
+}
+.relation_arrow_shape b,
+.relation_arrow_head {
+  width: 0;
+  height: 0;
+  border-top: fn.rem(6) solid transparent;
+  border-bottom: fn.rem(6) solid transparent;
+  border-left: fn.rem(8) solid #ccd;
+}
+.relation_growth {
+  gap: fn.rem(8);
+}
+.relation_growth_label {
+  color: #b8920a;
+  background: var(--color_matching_light);
+}
+.before_after_head_sub {
+  font-size: fn.rem(14);
+  opacity: 0.7;
+}
+.before_after_head_sub.is_matching {
+  opacity: 0.6;
+}
+.before_after_point_icon {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: fn.rem(15);
+  font-weight: 900;
+}
+.before_after_point_icon.negative {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+.before_after_point_icon.positive {
+  color: var(--k2);
+  background: var(--color_field_light);
+}
+.case_more {
+  margin-top: fn.rem(30);
+  text-align: center;
+}
+.case_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.full_width {
+  width: 100%;
+}
+
+@media (max-width: fn.rem(720)) {
+  .before_after_head_sub {
+    font-size: fn.rem(12);
+  }
+  .relation_pair {
+    flex-direction: column;
+  }
+}

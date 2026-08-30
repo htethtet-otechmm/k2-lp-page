@@ -1,39 +1,44 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { Sun, Moon } from "lucide-react";
+import styles from "./Header.module.scss";
+
+const navigation = [
+  ["TOP", "/"],
+  ["建工管理とは", "/about"],
+  ["機能", "/services"],
+  ["料金", "/pricing"],
+  ["導入事例", "/cases"],
+];
 
 export default function Header() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const updateScrolled = () => setScrolled(window.scrollY > 10);
-    updateScrolled();
-    window.addEventListener("scroll", updateScrolled, { passive: true });
-    return () => window.removeEventListener("scroll", updateScrolled);
+    const update = () => setScrolled(window.scrollY > 10);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
   }, []);
-  const navigate = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    target: string,
-  ) => {
-    event.preventDefault();
-    setOpen(false);
-    document
-      .querySelector(target)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.replaceState(null, "", target);
-  };
   const toggleDark = () => {
     const next = !dark;
     setDark(next);
     document.documentElement.dataset.theme = next ? "dark" : "";
   };
   return (
-    <>
-      <nav id="main_navigation" className={scrolled ? "is_scrolled" : ""}>
-        <a
+    <div className={styles.component}>
+      <nav
+        id="main_navigation"
+        className={`${styles.navigation}${scrolled ? " is_scrolled" : ""}`}
+      >
+        <Link
           className="navigation_logo"
-          href="#top"
-          onClick={(event) => navigate(event, "#top")}
+          href="/"
+          onClick={() => setOpen(false)}
           aria-label="建工管理"
         >
           <Image
@@ -43,59 +48,45 @@ export default function Header() {
             height={44}
             priority
           />
-        </a>
+        </Link>
         <div className="navigation_right">
           <div
             className={`navigation_links${open ? " open" : ""}`}
             id="navigation_links"
           >
-            <a href="#top" onClick={(event) => navigate(event, "#top")}>
-              TOP
-            </a>
-            <a
-              href="#services"
-              onClick={(event) => navigate(event, "#services")}
-            >
-              建工管理とは
-            </a>
-            <a
-              href="#services"
-              onClick={(event) => navigate(event, "#services")}
-            >
-              機能
-            </a>
-            <a href="#results" onClick={(event) => navigate(event, "#results")}>
-              料金
-            </a>
-            <a href="#cases" onClick={(event) => navigate(event, "#cases")}>
-              導入事例
-            </a>
+            {navigation.map(([label, href]) => (
+              <Link
+                className={router.pathname === href ? "is_current" : ""}
+                href={href}
+                onClick={() => setOpen(false)}
+                key={href}
+              >
+                {label}
+              </Link>
+            ))}
             <button
               className="dark_mode_toggle"
               onClick={toggleDark}
               aria-label="ダークモード切替"
             >
-              <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="5" />
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-              </svg>
+              {dark ? <Moon size={24} /> : <Sun size={24} />}
             </button>
           </div>
           <div className="navigation_actions">
-            <a
+            <Link
               className="navigation_login"
-              href="#services"
-              onClick={(event) => navigate(event, "#services")}
+              href="/brochure"
+              onClick={() => setOpen(false)}
             >
-              <span>資料請求</span>
-            </a>
-            <a
+              資料請求
+            </Link>
+            <Link
               className="navigation_cta"
-              href="#contact"
-              onClick={(event) => navigate(event, "#contact")}
+              href="/contact"
+              onClick={() => setOpen(false)}
             >
               お問い合わせ
-            </a>
+            </Link>
           </div>
           <button
             className={`navigation_hamburger${open ? " open" : ""}`}
@@ -113,6 +104,6 @@ export default function Header() {
         onClick={() => setOpen(false)}
         aria-label="メニューを閉じる"
       />
-    </>
+    </div>
   );
 }

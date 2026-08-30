@@ -1,0 +1,404 @@
+/** @format */
+@use "../variables.scss" as *;
+@use "../functions" as fn;
+@use "../mixins" as mixin;
+
+/* ── SCROLL-DRIVEN HERO ── */
+.hero_scroll_container {
+  position: relative;
+}
+
+/* Make hero sticky inside the tall scroll container */
+.hero.sticky_hero {
+  position: sticky;
+  top: fn.rem(64);
+  height: calc(100vh - fn.rem(64));
+  min-height: unset;
+}
+
+/* ── HERO SLIDER WRAP ── */
+.hero_slider_wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  perspective: fn.rem(1200);
+  width: calc(60% - fn.rem(48));
+  max-width: fn.rem(900);
+  padding: 0 0 fn.rem(40);
+  opacity: 0;
+  transform: translateY(fn.rem(40));
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.hero_slider_wrap.is_visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slider dot indicators */
+.hero_slider_dots {
+  display: flex;
+  gap: fn.rem(8);
+  justify-content: center;
+  margin-top: fn.rem(16);
+}
+
+.hero_slide_description {
+  width: fn.rem(8);
+  height: fn.rem(8);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 0.3s,
+    width 0.3s,
+    box-shadow 0.3s;
+}
+
+.hero_slide_description.active {
+  background: rgba(255, 255, 255, 0.85);
+  width: fn.rem(24);
+  border-radius: fn.rem(4);
+  box-shadow: 0 0 fn.rem(8) rgba(255, 255, 255, 0.4);
+}
+
+/* Outside service tabs */
+.hero_tab_outside_tabs {
+  display: flex;
+  gap: fn.rem(6);
+  margin-bottom: fn.rem(14);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero_tab_outside_tab {
+  padding: fn.rem(7) fn.rem(18);
+  border-radius: fn.rem(999);
+  font-size: fn.rem(14);
+  font-weight: 700;
+  cursor: pointer;
+  border: fn.rem(1.5) solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+  font-family: inherit;
+  transition: all 0.25s;
+  white-space: nowrap;
+  backdrop-filter: blur(fn.rem(8));
+}
+
+.hero_tab_outside_tab.active,
+.hero_tab_outside_tab:hover {
+  color: #fff;
+}
+
+.hero_tab_outside_tab.app_tab_field.active {
+  border-color: var(--color_field);
+  background: rgba(59, 111, 189, 0.28);
+}
+
+.hero_tab_outside_tab.app_tab_sales.active {
+  border-color: var(--color_sales);
+  background: rgba(72, 159, 70, 0.22);
+}
+
+.hero_tab_outside_tab.app_tab_matching.active {
+  border-color: var(--color_matching);
+  background: rgba(239, 202, 69, 0.2);
+}
+
+/* iPad frame */
+.hero_tab_ipad_frame {
+  transform-origin: center center;
+}
+
+.hero_tab_ipad_frame {
+  position: relative;
+  background: linear-gradient(150deg, #2d2d3e 0%, #1a1a28 60%, #161622 100%);
+  border-radius: fn.rem(26);
+  padding: fn.rem(14) fn.rem(12) fn.rem(16);
+  box-shadow:
+    0 0 0 fn.rem(1) rgba(255, 255, 255, 0.1),
+    0 fn.rem(1) 0 rgba(255, 255, 255, 0.06) inset,
+    0 fn.rem(36) fn.rem(96) rgba(0, 0, 0, 0.7),
+    0 fn.rem(12) fn.rem(32) rgba(0, 0, 0, 0.45);
+  width: 100%;
+  max-width: fn.rem(820);
+}
+
+.hero_tab_button_power {
+  position: absolute;
+  right: fn.rem(-3);
+  top: fn.rem(70);
+  width: fn.rem(3);
+  height: fn.rem(40);
+  background: linear-gradient(180deg, #2a2a3a, #222232);
+  border-radius: 0 fn.rem(3) fn.rem(3) 0;
+}
+
+.hero_tab_button_volume {
+  position: absolute;
+  left: fn.rem(-3);
+  width: fn.rem(3);
+  height: fn.rem(28);
+  background: linear-gradient(180deg, #2a2a3a, #222232);
+  border-radius: fn.rem(3) 0 0 fn.rem(3);
+}
+
+.hero_tab_button_volume.volume_up {
+  top: fn.rem(50);
+}
+
+.hero_tab_button_volume.volume_down {
+  top: fn.rem(86);
+}
+
+.hero_tab_screen {
+  background: #0c1120;
+  border-radius: fn.rem(14);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero_tab_screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 55%
+  );
+  border-radius: fn.rem(14);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.hero_tab_app_bar {
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: fn.rem(1) solid rgba(255, 255, 255, 0.06);
+  padding: fn.rem(11) fn.rem(18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: fn.rem(10);
+}
+
+.hero_tab_app_name {
+  font-size: fn.rem(17);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.hero_tab_app_tabs {
+  display: flex;
+  gap: fn.rem(4);
+}
+
+.hero_tab_app_tab {
+  font-size: fn.rem(13);
+  font-weight: 700;
+  padding: fn.rem(5) fn.rem(14);
+  border-radius: fn.rem(999);
+  color: rgba(255, 255, 255, 0.38);
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+}
+
+.hero_tab_app_tab.app_tab_field.active {
+  background: rgba(59, 111, 189, 0.3);
+  color: #7aaae8;
+}
+
+.hero_tab_app_tab.app_tab_sales.active {
+  background: rgba(72, 159, 70, 0.25);
+  color: #7dd47b;
+}
+
+.hero_tab_app_tab.app_tab_matching.active {
+  background: rgba(239, 202, 69, 0.2);
+  color: var(--color_matching);
+}
+
+.hero_tab_app_dots {
+  display: flex;
+  gap: fn.rem(4);
+  align-items: center;
+}
+
+.hero_tab_app_dots span {
+  width: fn.rem(6);
+  height: fn.rem(6);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  display: block;
+}
+
+/* Stacked panels with crossfade */
+.hero_tab_panels {
+  display: grid;
+  /* min-height: 320px; */
+}
+
+.hero_tab_panels .screen_panel {
+  grid-area: 1/1;
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(11);
+  opacity: 0;
+  transform: translateY(fn.rem(28)) scale(0.96);
+  pointer-events: none;
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero_tab_panels .screen_panel img {
+  width: 100%;
+}
+
+.hero_tab_panels .screen_panel.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Exiting panel goes up + slight scale up */
+.hero_tab_panels .screen_panel.panel_exit {
+  opacity: 0 !important;
+  transform: translateY(fn.rem(-18)) scale(1.02) !important;
+  pointer-events: none !important;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease !important;
+}
+
+/* Progress sweep bar */
+.hero_tab_progress_track {
+  height: fn.rem(2);
+  background: rgba(255, 255, 255, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero_tab_progress_fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color_button);
+  transition: width 0.1s linear;
+  border-radius: fn.rem(1);
+}
+
+/* Home bar */
+.hero_tab_home_bar {
+  width: fn.rem(70);
+  height: fn.rem(3);
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: fn.rem(2);
+  margin: fn.rem(10) auto 0;
+}
+
+/* Floating context badges */
+.hero_tab_badge {
+  position: absolute;
+  background: rgba(15, 20, 40, 0.88);
+  backdrop-filter: blur(fn.rem(16));
+  border: fn.rem(1) solid rgba(255, 255, 255, 0.13);
+  border-radius: fn.rem(14);
+  padding: fn.rem(10) fn.rem(14);
+  display: flex;
+  align-items: center;
+  gap: fn.rem(10);
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 fn.rem(8) fn.rem(32) rgba(0, 0, 0, 0.4);
+}
+
+.hero_tab_badge_1 {
+  top: fn.rem(-18);
+  right: 10%;
+  animation: htFloat1 4s ease-in-out infinite;
+}
+
+.hero_tab_badge_2 {
+  bottom: fn.rem(30);
+  left: 8%;
+  animation: htFloat2 4s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.hero_tab_badge_3 {
+  top: 40%;
+  right: fn.rem(-8);
+  transform: translateY(-50%);
+  animation: htFloat3 3.5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes htFloat1 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(fn.rem(-7));
+  }
+}
+
+@keyframes htFloat2 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(fn.rem(-5));
+  }
+}
+
+@keyframes htFloat3 {
+  0%,
+  100% {
+    transform: translateY(-50%);
+  }
+
+  50% {
+    transform: translateY(calc(-50% - fn.rem(6)));
+  }
+}
+
+.hero_tab_badge_icon {
+  width: fn.rem(30);
+  height: fn.rem(30);
+  border-radius: fn.rem(8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero_tab_badge_label {
+  font-size: fn.rem(11);
+  font-weight: 700;
+  color: #fff;
+  display: block;
+}
+
+.hero_tab_badge_sub {
+  font-size: fn.rem(10);
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: fn.rem(1);
+  display: block;
+}

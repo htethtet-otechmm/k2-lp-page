@@ -76,7 +76,9 @@ export default function Services() {
               key={service.name}
             >
               <div className="service_top">
-              <div className="service_icon"><Icon name={service.icon} /></div>
+                <div className="service_icon">
+                  <Icon name={service.icon} />
+                </div>
                 <div className="service_name">{service.name}</div>
                 <div className="service_tag">{service.tag}</div>
                 <div className="service_description">{service.description}</div>

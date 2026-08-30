@@ -1,0 +1,313 @@
+/** @format */
+@use "../variables.scss" as *;
+@use "../functions" as fn;
+@use "../mixins" as mixin;
+
+/* CASES */
+.case_list_hero {
+  background: linear-gradient(135deg, #2a8eff 0%, #037cff 60%, #0258b8 100%);
+  padding: fn.rem(72) 0;
+}
+
+.case_list_hero h1 {
+  font-size: clamp(fn.rem(28), 4vw, fn.rem(50));
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: fn.rem(13);
+}
+
+.case_list_hero p {
+  font-size: fn.rem(18);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.case_list_filter {
+  background: #fff;
+  padding: fn.rem(22) 0;
+  border-bottom: fn.rem(1) solid var(--color_sub);
+  position: sticky;
+  top: fn.rem(64);
+  z-index: 500;
+}
+
+.case_list_filter_inner {
+  display: flex;
+  align-items: center;
+  gap: fn.rem(11);
+  flex-wrap: wrap;
+}
+
+.filter_input {
+  flex: 1;
+  min-width: fn.rem(160);
+  padding: fn.rem(9) fn.rem(13);
+  border: fn.rem(2) solid var(--color_sub);
+  border-radius: fn.rem(8);
+  font-size: fn.rem(17);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.filter_input:focus {
+  border-color: var(--color_button);
+}
+
+.filter_select {
+  padding: fn.rem(9) fn.rem(13);
+  border: fn.rem(2) solid var(--color_sub);
+  border-radius: fn.rem(8);
+  font-size: fn.rem(17);
+  font-family: inherit;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  min-width: fn.rem(125);
+}
+
+.filter_select:focus {
+  border-color: var(--color_button);
+}
+
+.case_list {
+  padding: fn.rem(56) 0;
+}
+
+.case_list_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: fn.rem(24);
+}
+
+.case_list_card {
+  color: var(--color_text);
+  border-radius: var(--radius_default);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--shadow_default);
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  display: grid;
+  grid-template-columns: fn.rem(200) 1fr;
+}
+
+.case_list_card:hover {
+  transform: translateY(fn.rem(-4));
+  box-shadow: var(--shadow_large);
+}
+
+.case_list_card_image {
+  min-height: fn.rem(160);
+  max-height: fn.rem(300);
+  overflow: hidden;
+}
+
+.case_list_card_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: all 0.3s;
+}
+
+.case_list_card:hover .case_list_card_image img {
+  transform: scale(1.1);
+}
+
+.case_list_card_body {
+  padding: fn.rem(22);
+}
+
+.case_list_card_tags {
+  margin-bottom: fn.rem(6);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.6rem;
+  row-gap: 0.6rem;
+  list-style-type: none;
+}
+
+.case_list_card_tags li {
+  font-size: fn.rem(16);
+  padding: fn.rem(3) fn.rem(8);
+  border-radius: fn.rem(4);
+  font-weight: 600;
+}
+
+.case_list_card_tag_field {
+  color: var(--color_field);
+  background-color: var(--color_field_light);
+}
+
+.case_list_card_tag_sales {
+  color: var(--color_sales);
+  background-color: var(--color_sales_light);
+}
+
+.case_list_card_tag_matching {
+  color: var(--color_matching);
+  background-color: var(--color_matching_light);
+}
+
+.case_list_card_title {
+  font-size: fn.rem(18);
+  font-weight: 700;
+  margin-bottom: fn.rem(6);
+  line-height: 1.4;
+}
+
+.case_list_card_company {
+  font-size: fn.rem(16);
+  color: #888;
+  margin-bottom: fn.rem(10);
+}
+
+.case_list_card_arrow {
+  font-size: fn.rem(16);
+  font-weight: 700;
+  color: var(--color_button);
+}
+
+/* CASE DETAIL */
+.case_detail_hero {
+  background: linear-gradient(135deg, #2a8eff 0%, #037cff 60%, #0258b8 100%);
+  padding: fn.rem(72) 0;
+}
+
+.case_detail_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: fn.rem(48);
+  align-items: center;
+}
+
+.case_detail_hero h1 {
+  font-size: clamp(fn.rem(22), 3vw, fn.rem(36));
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: fn.rem(13);
+  line-height: 1.3;
+}
+
+.case_detail_meta {
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(8);
+}
+
+.case_detail_meta_row {
+  display: flex;
+  gap: fn.rem(12);
+}
+
+.case_detail_meta_label {
+  font-size: fn.rem(13);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.34);
+  width: fn.rem(76);
+  flex-shrink: 0;
+}
+
+.case_detail_meta_value {
+  font-size: fn.rem(17);
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.case_detail_photo {
+  border-radius: var(--radius_default);
+  /* aspect-ratio: 4/3; */
+}
+
+.case_detail_photo img {
+  width: 100%;
+}
+
+.case_detail_photo svg {
+  width: fn.rem(64);
+  height: fn.rem(64);
+  fill: rgba(255, 255, 255, 0.15);
+}
+
+.case_detail_section {
+  padding: fn.rem(56) 0;
+}
+
+.case_detail_section:nth-child(even) {
+  background: var(--color_sub);
+}
+
+.case_detail_inner {
+  max-width: fn.rem(780);
+  margin: 0 auto;
+  padding: 0 fn.rem(32);
+}
+
+.case_detail_h2 {
+  font-size: fn.rem(22);
+  font-weight: 700;
+  margin-bottom: fn.rem(18);
+  padding-bottom: fn.rem(12);
+  border-bottom: fn.rem(2) solid var(--color_sub);
+}
+
+.case_detail_photo_text {
+  display: flex;
+  gap: fn.rem(26);
+  align-items: center;
+  margin-bottom: fn.rem(32);
+}
+
+/* 子要素が1つなら全幅、2つなら半々に自動で分かれる */
+.case_detail_photo_text > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.case_detail_photo_text.reveal {
+  flex-direction: row-reverse;
+}
+
+.case_detail_photo_box {
+  border-radius: var(--radius_default);
+  /* aspect-ratio: 4/3; */
+}
+
+.case_detail_photo_box img {
+  width: 100%;
+}
+
+.case_detail_photo_box svg {
+  width: fn.rem(48);
+  height: fn.rem(48);
+  fill: var(--color_field);
+  opacity: 0.4;
+}
+
+.case_detail_text_box p {
+  font-size: fn.rem(18);
+  color: #444;
+  line-height: 1.95;
+}
+
+.case_detail_voice {
+  background: var(--color_field_light);
+  border-radius: var(--radius_default);
+  padding: fn.rem(26);
+  margin: fn.rem(18) 0;
+  border-left: fn.rem(4) solid var(--color_field);
+}
+
+.case_detail_voice_text {
+  font-size: fn.rem(19);
+  color: var(--color_dark);
+  line-height: 1.85;
+  font-style: italic;
+  margin-bottom: fn.rem(9);
+}
+
+.case_detail_voice_cite {
+  font-size: fn.rem(16);
+  color: #888;
+}
