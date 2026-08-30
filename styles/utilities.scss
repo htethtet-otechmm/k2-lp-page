@@ -1,0 +1,556 @@
+/** @format */
+@use "variables.scss" as *;
+@use "functions" as fn;
+@use "mixins" as mixin;
+
+/* =========================================================
+ * ADDITIONS (v9 20260424)
+ *
+ * - Color template: text colors centralized
+ * - Utility classes to replace the most common inline styles
+ * - Legal pages (privacy policy / specified commercial transaction)
+ *
+ * Written in the project rule style:
+ *   margin/padding → width/height → flex → font → other
+ *   classes: full English words, underscore separated
+ *   CSS is nested (native CSS nesting)
+ * ========================================================= */
+
+/* ---- Text color template (reusable) ---- */
+:root {
+  --color_text_default: var(--color_dark);
+  --color_text_muted_strong: #888;
+  --color_text_muted: #aaa;
+  --color_text_muted_light: #c2c2dc;
+  --color_text_on_dark_light: rgba(255, 255, 255, 0.72);
+  --color_text_on_dark_muted: rgba(255, 255, 255, 0.48);
+  --color_text_on_dark_subtle: rgba(255, 255, 255, 0.28);
+  --color_sales_dark_text: #b8920a;
+
+  --color_field_bar_soft: rgba(59, 111, 189, 0.28);
+  --color_sales_bar_soft: rgba(72, 159, 70, 0.28);
+  --color_matching_bar_soft: rgba(239, 202, 69, 0.28);
+}
+
+.text_muted_strong {
+  color: var(--color_text_muted_strong);
+}
+
+.text_muted {
+  color: var(--color_text_muted);
+}
+
+.text_muted_light {
+  color: var(--color_text_muted_light);
+}
+
+.text_field {
+  color: var(--color_field);
+}
+
+.text_sales {
+  color: var(--color_sales);
+}
+
+.text_matching {
+  color: var(--color_matching);
+}
+
+.text_sales_dark {
+  color: var(--color_sales_dark_text);
+}
+
+.text_bold {
+  font-weight: 700;
+}
+
+.text_normal {
+  font-weight: 400;
+}
+
+/* ---- Layout utilities (replace common inline patterns) ---- */
+.flex_center_gap_4 {
+  display: flex;
+  align-items: center;
+  gap: fn.rem(4);
+}
+
+.flex_center_gap_6 {
+  display: flex;
+  align-items: center;
+  gap: fn.rem(6);
+}
+
+.flex_center_gap_8 {
+  display: flex;
+  align-items: center;
+  gap: fn.rem(8);
+}
+
+.flex_center_gap_12 {
+  display: flex;
+  align-items: center;
+  gap: fn.rem(12);
+}
+
+.flex_col_center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex_col_center_gap_4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: fn.rem(4);
+}
+
+.flex_gap_4 {
+  display: flex;
+  gap: fn.rem(4) !important;
+}
+
+.flex_gap_6 {
+  display: flex;
+  gap: fn.rem(6) !important;
+}
+
+.flex_gap_8 {
+  display: flex;
+  gap: fn.rem(8) !important;
+}
+
+.flex_gap_10 {
+  display: flex;
+  gap: fn.rem(10) !important;
+}
+
+.flex_gap_12 {
+  display: flex;
+  gap: fn.rem(12) !important;
+}
+
+.full_width {
+  width: 100%;
+}
+
+.is_none {
+  display: none;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.grid_3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: fn.rem(8);
+}
+
+/* ---- Font size utilities (used with hero mock screens / dashboards) ---- */
+.font_size_10 {
+  font-size: fn.rem(10) !important;
+}
+
+.font_size_11 {
+  font-size: fn.rem(11) !important;
+}
+
+.font_size_12 {
+  font-size: fn.rem(12) !important;
+}
+
+.font_size_13 {
+  font-size: fn.rem(13) !important;
+}
+
+.font_size_14 {
+  font-size: fn.rem(14) !important;
+}
+
+.font_size_16 {
+  font-size: fn.rem(16) !important;
+}
+
+.font_size_18 {
+  font-size: fn.rem(18) !important;
+}
+
+.font_size_20 {
+  font-size: fn.rem(20) !important;
+}
+
+/* ---- Theme badge soft variants (replace inline background) ---- */
+.badge_soft_field {
+  padding: fn.rem(2) fn.rem(8);
+  font-size: fn.rem(10);
+  font-weight: 700;
+  color: var(--color_field);
+  background: var(--color_field_light);
+  border-radius: fn.rem(6);
+}
+
+.badge_soft_sales {
+  padding: fn.rem(2) fn.rem(8);
+  font-size: fn.rem(10);
+  font-weight: 700;
+  color: var(--color_sales);
+  background: var(--color_sales_light);
+  border-radius: fn.rem(6);
+}
+
+.badge_soft_matching {
+  padding: fn.rem(2) fn.rem(8);
+  font-size: fn.rem(10);
+  font-weight: 700;
+  color: var(--color_matching);
+  background: var(--color_matching_light);
+  border-radius: fn.rem(6);
+}
+
+/* ---- Hero mock chart bar height utilities (replace inline height:XX%) ---- */
+.bar_height_25 {
+  height: 25%;
+}
+
+.bar_height_30 {
+  height: 30%;
+}
+
+.bar_height_35 {
+  height: 35%;
+}
+
+.bar_height_40 {
+  height: 40%;
+}
+
+.bar_height_45 {
+  height: 45%;
+}
+
+.bar_height_50 {
+  height: 50%;
+}
+
+.bar_height_55 {
+  height: 55%;
+}
+
+.bar_height_60 {
+  height: 60%;
+}
+
+.bar_height_65 {
+  height: 65%;
+}
+
+.bar_height_70 {
+  height: 70%;
+}
+
+.bar_height_75 {
+  height: 75%;
+}
+
+.bar_height_80 {
+  height: 80%;
+}
+
+.bar_height_85 {
+  height: 85%;
+}
+
+.bar_height_90 {
+  height: 90%;
+}
+
+.bar_height_95 {
+  height: 95%;
+}
+
+/* ---- Width utilities (replace inline width:XX%) ---- */
+.width_20 {
+  width: 20%;
+}
+
+.width_25 {
+  width: 25%;
+}
+
+.width_30 {
+  width: 30%;
+}
+
+.width_35 {
+  width: 35%;
+}
+
+.width_40 {
+  width: 40%;
+}
+
+.width_45 {
+  width: 45%;
+}
+
+.width_50 {
+  width: 50%;
+}
+
+.width_55 {
+  width: 55%;
+}
+
+.width_60 {
+  width: 60%;
+}
+
+.width_65 {
+  width: 65%;
+}
+
+.width_70 {
+  width: 70%;
+}
+
+.width_75 {
+  width: 75%;
+}
+
+.width_80 {
+  width: 80%;
+}
+
+.width_85 {
+  width: 85%;
+}
+
+.width_90 {
+  width: 90%;
+}
+
+.width_95 {
+  width: 95%;
+}
+
+.width_100 {
+  width: 100%;
+}
+
+/* ---- Legal pages (privacy / commerce) ---- */
+.legal_hero {
+  padding: fn.rem(80) 0 fn.rem(24);
+
+  & .section_title {
+    margin: 0 0 fn.rem(8);
+    font-size: fn.rem(32);
+    font-weight: 700;
+    text-align: center;
+    color: var(--color_text_default);
+  }
+
+  & .section_sub {
+    margin: 0;
+    font-size: fn.rem(14);
+    text-align: center;
+    color: var(--color_text_muted_strong);
+  }
+}
+
+.legal_body {
+  padding: fn.rem(16) 0 fn.rem(80);
+
+  & .legal_container {
+    padding: fn.rem(40);
+
+    max-width: fn.rem(880);
+
+    background: #fff;
+    border: fn.rem(1) solid var(--color_sub);
+    border-radius: var(--radius_default);
+    box-shadow: var(--shadow_default);
+  }
+
+  [data-theme="dark"] & .legal_container {
+    background: #2a2a3d;
+  }
+
+  & .legal_lead {
+    margin: 0 0 fn.rem(32);
+    font-size: fn.rem(15);
+    line-height: 1.9;
+    color: var(--color_text_default);
+  }
+
+  & .legal_h2 {
+    margin: fn.rem(32) 0 fn.rem(12);
+    padding: 0 0 fn.rem(6);
+    font-size: fn.rem(18);
+    font-weight: 700;
+    color: var(--color_field);
+    border-bottom: fn.rem(2) solid var(--color_field_light);
+  }
+
+  & .legal_paragraph {
+    margin: 0 0 fn.rem(12);
+    font-size: fn.rem(14);
+    line-height: 1.9;
+    color: var(--color_text_default);
+  }
+
+  & .legal_ordered_list {
+    margin: 0 0 fn.rem(16);
+    padding: 0 0 0 fn.rem(24);
+    font-size: fn.rem(14);
+    line-height: 1.9;
+    color: var(--color_text_default);
+
+    & li {
+      margin: 0 0 fn.rem(4);
+    }
+  }
+
+  & .legal_contact_block {
+    margin: fn.rem(24) 0 0;
+    padding: fn.rem(20);
+
+    display: flex;
+    flex-direction: column;
+    gap: fn.rem(16);
+
+    background: var(--color_field_light);
+    border-radius: var(--radius_default);
+  }
+
+  & .legal_contact_group {
+    & .legal_contact_label {
+      margin: 0 0 fn.rem(4);
+      font-size: fn.rem(11);
+      font-weight: 700;
+      color: var(--color_field);
+    }
+
+    & .legal_contact_name {
+      margin: 0 0 fn.rem(2);
+      font-size: fn.rem(15);
+      font-weight: 700;
+      color: var(--color_text_default);
+    }
+
+    & .legal_contact_address,
+    & .legal_contact_email {
+      font-size: fn.rem(13);
+      color: var(--color_text_muted_strong);
+    }
+  }
+
+  & .legal_definition_list {
+    margin: 0;
+    padding: 0;
+  }
+
+  & .legal_definition_row {
+    padding: fn.rem(16) 0;
+
+    display: grid;
+    grid-template-columns: fn.rem(220) 1fr;
+    gap: fn.rem(24);
+
+    border-bottom: fn.rem(1) solid var(--color_sub);
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  & .legal_definition_term {
+    margin: 0;
+    font-size: fn.rem(13);
+    font-weight: 700;
+    color: var(--color_field);
+  }
+
+  & .legal_definition_description {
+    margin: 0;
+    font-size: fn.rem(14);
+    line-height: 1.8;
+    color: var(--color_text_default);
+  }
+
+  & .legal_link {
+    color: var(--color_button);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+/* Legal pages responsive */
+@media (max-width: fn.rem(720)) {
+  .legal_body {
+    & .legal_container {
+      padding: fn.rem(24) fn.rem(20);
+    }
+
+    & .legal_definition_row {
+      grid-template-columns: 1fr;
+      gap: fn.rem(6);
+    }
+  }
+
+  .legal_hero {
+    padding: fn.rem(72) 0 fn.rem(16);
+
+    & .section_title {
+      font-size: fn.rem(24);
+    }
+  }
+}
+
+/* ---- More utility classes (phase 2 extraction) ---- */
+.admin_button_compact {
+  padding: fn.rem(5) fn.rem(9);
+  font-size: fn.rem(13);
+}
+
+.flex_gap_9 {
+  display: flex;
+  gap: fn.rem(9);
+}
+
+.bg_sub {
+  background: var(--color_sub);
+}
+
+.badge_pill_field {
+  padding: fn.rem(3) fn.rem(12);
+  font-size: fn.rem(14);
+  font-weight: 700;
+  color: var(--color_field);
+  background: var(--color_field_light);
+  border-radius: fn.rem(999);
+}
+
+.badge_pill_sales {
+  padding: fn.rem(3) fn.rem(12);
+  font-size: fn.rem(14);
+  font-weight: 700;
+  color: var(--color_sales);
+  background: var(--color_sales_light);
+  border-radius: fn.rem(999);
+}
+
+.badge_pill_matching {
+  padding: fn.rem(3) fn.rem(12);
+  font-size: fn.rem(14);
+  font-weight: 700;
+  color: var(--color_sales_dark_text);
+  background: var(--color_matching_light);
+  border-radius: fn.rem(999);
+}

@@ -1,0 +1,477 @@
+/** @format */
+@use "../variables.scss" as *;
+@use "../functions" as fn;
+@use "../mixins" as mixin;
+
+/* ABOUT */
+/* Vision hero */
+.about_vision_hero {
+  background: linear-gradient(135deg, #0e2a54 0%, #163d6e 50%, #0a5872 100%);
+  padding: 0;
+  overflow: hidden;
+}
+
+.about_vision_hero_inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: fn.rem(480);
+  align-items: stretch;
+}
+
+.about_vision_hero_left {
+  padding: fn.rem(80) fn.rem(56) fn.rem(80) fn.rem(32);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about_vision_hero_right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: fn.rem(40);
+}
+
+/* Right side: concept visual */
+.about_vision_hero_visual {
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(12);
+  width: 100%;
+  max-width: fn.rem(360);
+}
+
+.about_vision_hero_visual_card {
+  background: rgba(255, 255, 255, 0.07);
+  border: fn.rem(1) solid rgba(255, 255, 255, 0.13);
+  border-radius: fn.rem(12);
+  padding: fn.rem(18) fn.rem(22);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.about_vision_hero_visual_card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(fn.rem(-4));
+}
+
+.about_vision_hero_visual_card_service {
+  font-size: fn.rem(11);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: fn.rem(4);
+  opacity: 0.7;
+}
+
+.about_vision_hero_visual_card.field .about_vision_hero_visual_card_service {
+  color: #7aaae8;
+}
+
+.about_vision_hero_visual_card.sales .about_vision_hero_visual_card_service {
+  color: #7dd47b;
+}
+
+.about_vision_hero_visual_card.matching .about_vision_hero_visual_card_service {
+  color: var(--color_matching);
+}
+
+.about_vision_hero_visual_card_title {
+  font-size: fn.rem(17);
+  font-weight: 700;
+  color: #fff;
+}
+
+.about_vision_hero_visual_card_text {
+  font-size: fn.rem(14);
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: fn.rem(3);
+  line-height: 1.5;
+}
+
+/* About dashboard visual */
+.about_vision_hero_dashboard {
+  background: rgba(10, 16, 34, 0.88);
+  border: fn.rem(1) solid rgba(255, 255, 255, 0.14);
+  border-radius: fn.rem(16);
+  overflow: hidden;
+  box-shadow: 0 fn.rem(24) fn.rem(64) rgba(0, 0, 0, 0.55);
+  width: 100%;
+  max-width: fn.rem(400);
+}
+
+.about_vision_hero_dashboard_header {
+  background: rgba(255, 255, 255, 0.05);
+  padding: fn.rem(10) fn.rem(16);
+  display: flex;
+  align-items: center;
+  gap: fn.rem(8);
+  border-bottom: fn.rem(1) solid rgba(255, 255, 255, 0.07);
+}
+
+.about_vision_hero_dashboard_dots {
+  display: flex;
+  gap: fn.rem(5);
+}
+
+.about_vision_hero_dashboard_dots span {
+  width: fn.rem(7);
+  height: fn.rem(7);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: block;
+}
+
+.about_vision_hero_dashboard_title {
+  font-size: fn.rem(13);
+  color: rgba(255, 255, 255, 0.3);
+  margin-left: fn.rem(4);
+  font-weight: 600;
+}
+
+.about_vision_hero_dashboard_body {
+  padding: fn.rem(14);
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(10);
+}
+
+.about_vision_hero_dashboard_stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: fn.rem(7);
+}
+
+.about_vision_hero_dashboard_stat {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: fn.rem(7);
+  padding: fn.rem(10) fn.rem(9);
+  border-left-width: fn.rem(3);
+  border-left-style: solid;
+}
+
+.about_vision_hero_dashboard_stat_label {
+  font-size: fn.rem(10);
+  color: rgba(255, 255, 255, 0.36);
+  margin-bottom: fn.rem(3);
+}
+
+.about_vision_hero_dashboard_stat_value {
+  font-size: fn.rem(18);
+  font-weight: 900;
+  color: #fff;
+}
+
+.about_vision_hero_dashboard_stat_sub {
+  font-size: fn.rem(10);
+  color: rgba(255, 255, 255, 0.28);
+  margin-top: fn.rem(2);
+}
+
+.about_vision_hero_service_cards {
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(6);
+}
+
+.about_vision_hero_service_card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: fn.rem(7);
+  padding: fn.rem(9) fn.rem(11);
+  display: flex;
+  align-items: center;
+  gap: fn.rem(9);
+  cursor: pointer;
+  transition: background 0.2s;
+  border-left-width: fn.rem(2);
+  border-left-style: solid;
+}
+
+.about_vision_hero_service_card:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.about_vision_hero_service_card_icon {
+  width: fn.rem(30);
+  height: fn.rem(30);
+  border-radius: fn.rem(6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about_vision_hero_service_card_name {
+  font-size: fn.rem(13);
+  font-weight: 700;
+  margin-bottom: fn.rem(1);
+}
+
+.about_vision_hero_service_card_description {
+  font-size: fn.rem(11);
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.4;
+}
+
+.about_vision_hero_dashboard_chart_row {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: fn.rem(7);
+  padding: fn.rem(9) fn.rem(11);
+}
+
+.about_vision_hero_dashboard_chart_label {
+  font-size: fn.rem(10);
+  color: rgba(255, 255, 255, 0.28);
+  margin-bottom: fn.rem(5);
+}
+
+.about_vision_hero_dashboard_bars {
+  display: flex;
+  gap: fn.rem(4);
+  align-items: flex-end;
+  height: fn.rem(30);
+}
+
+.about_vision_hero_dashboard_bar {
+  flex: 1;
+  border-radius: fn.rem(2) fn.rem(2) 0 0;
+  opacity: 0.7;
+  min-height: fn.rem(3);
+}
+
+/* About dashboard visual */
+.about_vision_hero_dashboard {
+  background: rgba(12, 18, 36, 0.85);
+  border: fn.rem(1) solid rgba(255, 255, 255, 0.14);
+  border-radius: fn.rem(16);
+  overflow: hidden;
+  box-shadow: 0 fn.rem(20) fn.rem(60) rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: fn.rem(380);
+}
+
+.about_vision_hero_dashboard_header {
+  background: rgba(255, 255, 255, 0.05);
+  padding: fn.rem(10) fn.rem(16);
+  display: flex;
+  align-items: center;
+  gap: fn.rem(8);
+  border-bottom: fn.rem(1) solid rgba(255, 255, 255, 0.07);
+}
+
+.about_vision_hero_dashboard_dots {
+  display: flex;
+  gap: fn.rem(5);
+}
+
+.about_vision_hero_dashboard_dots span {
+  width: fn.rem(7);
+  height: fn.rem(7);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: block;
+}
+
+.about_vision_hero_dashboard_title {
+  font-size: fn.rem(13);
+  color: rgba(255, 255, 255, 0.32);
+  margin-left: fn.rem(4);
+}
+
+.about_vision_hero_dashboard_body {
+  padding: fn.rem(16);
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(12);
+}
+
+.about_vision_hero_dashboard_stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: fn.rem(8);
+}
+
+.about_vision_hero_dashboard_stat {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: fn.rem(8);
+  padding: fn.rem(11) fn.rem(10);
+  border-left: fn.rem(3) solid transparent;
+}
+
+.about_vision_hero_dashboard_stat_label {
+  font-size: fn.rem(10);
+  color: rgba(255, 255, 255, 0.38);
+  margin-bottom: fn.rem(3);
+}
+
+.about_vision_hero_dashboard_stat_value {
+  font-size: fn.rem(19);
+  font-weight: 900;
+  color: #fff;
+}
+
+.about_vision_hero_dashboard_stat_sub {
+  font-size: fn.rem(10);
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: fn.rem(2);
+}
+
+.about_vision_hero_service_cards {
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(7);
+}
+
+.about_vision_hero_service_card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: fn.rem(8);
+  padding: fn.rem(10) fn.rem(12);
+  display: flex;
+  align-items: center;
+  gap: fn.rem(10);
+  cursor: pointer;
+  transition: background 0.2s;
+  border-left: fn.rem(2) solid transparent;
+}
+
+.about_vision_hero_service_card:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.about_vision_hero_service_card_icon {
+  width: fn.rem(32);
+  height: fn.rem(32);
+  border-radius: fn.rem(7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about_vision_hero_service_card_name {
+  font-size: fn.rem(14);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: fn.rem(1);
+}
+
+.about_vision_hero_service_card_description {
+  font-size: fn.rem(11);
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.4;
+}
+
+.about_vision_hero_dashboard_chart_row {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: fn.rem(8);
+  padding: fn.rem(10) fn.rem(12);
+}
+
+.about_vision_hero_dashboard_chart_label {
+  font-size: fn.rem(10);
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: fn.rem(6);
+}
+
+.about_vision_hero_dashboard_bars {
+  display: flex;
+  gap: fn.rem(4);
+  align-items: flex-end;
+  height: fn.rem(32);
+}
+
+.about_vision_hero_dashboard_bar {
+  flex: 1;
+  border-radius: fn.rem(2) fn.rem(2) 0 0;
+  opacity: 0.65;
+  min-height: fn.rem(4);
+}
+
+.about_vision_english {
+  font-size: fn.rem(14);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.12em;
+  margin-bottom: fn.rem(8);
+}
+
+.about_vision_main {
+  font-size: clamp(fn.rem(32), 5vw, fn.rem(56));
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: fn.rem(16);
+  color: #fff;
+}
+
+.about_vision_main em {
+  color: var(--color_matching);
+  font-style: normal;
+}
+
+.about_vision_text {
+  font-size: fn.rem(18);
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.95;
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(10);
+  max-width: fn.rem(420);
+}
+
+.targets_section {
+  background: var(--color_sub);
+  padding: fn.rem(72) 0;
+}
+
+.target_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: fn.rem(22);
+  margin-top: fn.rem(44);
+}
+
+.target_card {
+  border-radius: var(--radius_default);
+  padding: fn.rem(32) fn.rem(26);
+  background: #fff;
+  box-shadow: var(--shadow_default);
+  border-top: fn.rem(4) solid;
+}
+
+.target_card:nth-child(1) {
+  border-color: var(--color_field);
+}
+
+.target_card:nth-child(2) {
+  border-color: var(--color_sales);
+}
+
+.target_card:nth-child(3) {
+  border-color: var(--color_matching);
+}
+
+.target_icon {
+  margin-bottom: fn.rem(12);
+}
+
+.target_icon svg {
+  width: fn.rem(32);
+  height: fn.rem(32);
+}
+
+.target_title {
+  font-size: fn.rem(20);
+  font-weight: 700;
+  margin-bottom: fn.rem(9);
+}
+
+.target_quote {
+  font-size: fn.rem(17);
+  color: #555;
+  line-height: 1.7;
+  border-left: fn.rem(3) solid var(--color_sub);
+  padding-left: fn.rem(13);
+}

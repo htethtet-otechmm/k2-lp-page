@@ -1,0 +1,142 @@
+/** @format */
+@use "../variables.scss" as *;
+@use "../functions" as fn;
+@use "../mixins" as mixin;
+
+/* ABOUT VISION 修正用 */
+.about_vision {
+  background: linear-gradient(135deg, #2a8eff 0%, #037cff 60%, #0258b8 100%);
+  padding: fn.rem(80) 0;
+}
+
+.about_vision_inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: fn.rem(40);
+  align-items: center;
+}
+
+.about_vision_right {
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(16);
+}
+
+.about_vision_card {
+  background: rgba(255, 255, 255, 0.05);
+  border: fn.rem(1) solid rgba(255, 255, 255, 0.1);
+  border-radius: fn.rem(12);
+  padding: fn.rem(20);
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.about_vision_card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(fn.rem(-4));
+}
+
+.about_vision_card.field {
+  border-left: fn.rem(4) solid var(--color_field);
+}
+
+.about_vision_card.sales {
+  border-left: fn.rem(4) solid var(--color_sales);
+}
+
+.about_vision_card.matching {
+  border-left: fn.rem(4) solid var(--color_matching);
+}
+
+.about_vision_card_service {
+  font-size: fn.rem(13);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: fn.rem(6);
+}
+
+.about_vision_card.field .about_vision_card_service {
+  color: #7aaae8;
+}
+
+.about_vision_card.sales .about_vision_card_service {
+  color: #7dd47b;
+}
+
+.about_vision_card.matching .about_vision_card_service {
+  color: var(--color_matching);
+}
+
+.about_vision_card_title {
+  font-size: fn.rem(18);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: fn.rem(6);
+}
+
+.about_vision_card_text {
+  font-size: fn.rem(16);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+}
+
+@media (max-width: fn.rem(760)) {
+  .about_vision_inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ABOUT VISION 写真レイアウト用 */
+.about_vision_right_photos {
+  position: relative;
+  width: 100%;
+  min-height: fn.rem(420);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about_vision_photo_main {
+  width: 75%;
+  border-radius: fn.rem(16);
+  box-shadow: 0 fn.rem(24) fn.rem(56) rgba(0, 0, 0, 0.3);
+  border: fn.rem(4) solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 2;
+  transform: translateX(10%);
+  object-fit: cover;
+}
+
+.about_vision_photo_sub {
+  width: 55%;
+  border-radius: fn.rem(16);
+  box-shadow: 0 fn.rem(16) fn.rem(40) rgba(0, 0, 0, 0.4);
+  border: fn.rem(4) solid rgba(255, 255, 255, 0.1);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  object-fit: cover;
+}
+
+@media (max-width: fn.rem(960)) {
+  .about_vision_right_photos {
+    min-height: auto;
+    margin-top: fn.rem(32);
+    padding-bottom: 15%;
+  }
+
+  .about_vision_photo_main {
+    transform: translateX(8%);
+    width: 85%;
+    height: auto;
+  }
+
+  .about_vision_photo_sub {
+    bottom: -10%;
+    left: 0%;
+    width: 60%;
+  }
+}

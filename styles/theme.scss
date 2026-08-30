@@ -1,0 +1,864 @@
+/** @format */
+@use "variables.scss" as *;
+@use "functions" as fn;
+@use "mixins" as mixin;
+
+/* ── DARK MODE TOGGLE BUTTON ── */
+.dark_mode_toggle {
+  width: fn.rem(36);
+  height: fn.rem(36);
+  border-radius: fn.rem(8);
+  border: fn.rem(1.5) solid var(--color_sub);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  flex-shrink: 0;
+  margin-left: fn.rem(4);
+}
+
+.dark_mode_toggle:hover {
+  background: var(--color_sub);
+}
+
+.dark_mode_toggle svg {
+  width: fn.rem(18);
+  height: fn.rem(18);
+  fill: none;
+  stroke: var(--color_dark);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s;
+}
+
+.dark_mode_toggle .icon_sun {
+  display: block;
+}
+
+.dark_mode_toggle .icon_moon {
+  display: none;
+}
+
+/* ── DARK MODE OVERRIDES ── */
+[data-theme="dark"] {
+  --color_sub: #2a2a3d;
+  --color_dark: #f2f2fa;
+  --color_text: #f2f2fa;
+  --color_sub_text: #a0aabb;
+  --shadow_default: 0 #{fn.rem(4)} #{fn.rem(24)} rgba(0, 0, 0, 0.3);
+  --shadow_large: 0 #{fn.rem(12)} #{fn.rem(48)} rgba(0, 0, 0, 0.45);
+  --color_field_light: rgba(59, 111, 189, 0.18);
+  --color_sales_light: rgba(72, 159, 70, 0.15);
+  --color_matching_light: rgba(239, 202, 69, 0.1);
+}
+
+[data-theme="dark"] body {
+  background: #13131f;
+  color: #f2f2fa;
+}
+
+[data-theme="dark"] nav {
+  background: rgba(18, 18, 30, 0.97);
+  border-bottom-color: #2a2a3d;
+}
+
+[data-theme="dark"] .navigation_links a:hover {
+  background: #2a2a3d;
+}
+
+[data-theme="dark"] .dark_mode_toggle {
+  border-color: #3a3a50;
+}
+
+[data-theme="dark"] .dark_mode_toggle:hover {
+  background: #2a2a3d;
+}
+
+[data-theme="dark"] .dark_mode_toggle svg {
+  stroke: #f2f2fa;
+}
+
+[data-theme="dark"] .dark_mode_toggle .icon_sun {
+  display: none;
+}
+
+[data-theme="dark"] .dark_mode_toggle .icon_moon {
+  display: block;
+}
+
+/* White/light backgrounds → dark surfaces */
+[data-theme="dark"] .target_card,
+[data-theme="dark"] .faq_item,
+[data-theme="dark"] .case_list_card,
+[data-theme="dark"] .admin_stat,
+[data-theme="dark"] .admin_table_wrap,
+[data-theme="dark"] .admin_card,
+[data-theme="dark"] .admin_remove_button,
+[data-theme="dark"] .service_connect,
+[data-theme="dark"] .sns_item,
+[data-theme="dark"] .contact_info_item {
+  background: #1e1e2e;
+}
+
+[data-theme="dark"] .admin_main {
+  background: #0e0e1c;
+}
+
+[data-theme="dark"] .admin_table_head {
+  background: #1a1a2a;
+  border-bottom-color: #2a2a3d;
+}
+
+[data-theme="dark"] .admin_table_row {
+  border-bottom-color: #2a2a3d;
+}
+
+[data-theme="dark"] .admin_table_row:hover {
+  background: #1a1a2a;
+}
+
+[data-theme="dark"] .admin_button_outline {
+  background: #1e1e2e;
+  color: #e8e8f0;
+  border-color: #3a3a50;
+}
+
+[data-theme="dark"] .admin_button_outline:hover {
+  border-color: var(--color_button);
+  color: var(--color_button);
+}
+
+[data-theme="dark"] .admin_button_danger {
+  background: #2a1a1a;
+  border-color: #5a2a2a;
+}
+
+[data-theme="dark"] .targets_section,
+[data-theme="dark"] .faq_section,
+[data-theme="dark"] .relation_secondary_section,
+[data-theme="dark"] .sns_bar,
+[data-theme="dark"] .case_detail_section:nth-child(even) {
+  background: #1a1a2c;
+}
+
+[data-theme="dark"] .section_sub,
+[data-theme="dark"] .target_quote {
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .faq_question:hover {
+  background: #1e1e2e;
+}
+
+[data-theme="dark"] .faq_answer {
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .form_input,
+[data-theme="dark"] .form_select,
+[data-theme="dark"] .form_textarea,
+[data-theme="dark"] .admin_input,
+[data-theme="dark"] .admin_select,
+[data-theme="dark"] .admin_textarea,
+[data-theme="dark"] .filter_input,
+[data-theme="dark"] .filter_select {
+  background: #1e1e2e;
+  border-color: #3a3a50;
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .case_list_filter {
+  background: #13131f;
+  border-bottom-color: #2a2a3d;
+}
+
+[data-theme="dark"] .side_button.cta_contact {
+  background: #1e1e2e;
+  color: #e8e8f0;
+  border-bottom-color: #2a2a3d;
+}
+
+[data-theme="dark"] .side_button.cta_contact:hover {
+  background: #2a2a3d;
+}
+
+[data-theme="dark"] .support_panel {
+  background: linear-gradient(135deg, #1a2040, #1a2a35);
+}
+
+[data-theme="dark"] .support_panel p {
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .pricing_trial p {
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .case_detail_text_box p {
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .sales_price_card.mode_add {
+  background: #1a1a2a;
+  border-color: #2a2a3d;
+}
+
+[data-theme="dark"] .case_detail_h2 {
+  border-bottom-color: #2a2a3d;
+}
+
+[data-theme="dark"] .admin_form_footer {
+  border-top-color: #2a2a3d;
+}
+
+[data-theme="dark"] .admin_section_title {
+  border-bottom-color: #2a2a3d;
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .admin_form_label {
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .admin_stat_label,
+[data-theme="dark"] .admin_stat_sub {
+  color: #9090c0;
+}
+
+[data-theme="dark"] .admin_page_title {
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .admin_status.status_draft {
+  background: #2a2a3d;
+  color: #8888b0;
+}
+
+[data-theme="dark"] .admin_check_item {
+  border-color: #3a3a50;
+}
+
+[data-theme="dark"] .admin_check_item:hover {
+  background: #1e1e2e;
+}
+
+[data-theme="dark"] .admin_upload {
+  border-color: #3a3a50;
+}
+
+[data-theme="dark"] .admin_upload:hover {
+  background: #1e1e2e;
+}
+
+[data-theme="dark"] .admin_back_button {
+  color: #9090c0;
+}
+
+[data-theme="dark"] .admin_back_button:hover {
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .admin_separator {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .button_outline {
+  color: #e8e8f0;
+  border-color: #3a3a50;
+}
+
+[data-theme="dark"] .button_white {
+  background: #1e1e2e;
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .navigation_hamburger span {
+  background: #e8e8f0;
+}
+
+[data-theme="dark"] .pricing_trial {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 111, 189, 0.2),
+    rgba(59, 111, 189, 0.1)
+  );
+}
+
+[data-theme="dark"] .pricing_trial.sales_background_cta {
+  background: linear-gradient(
+    135deg,
+    rgba(72, 159, 70, 0.2),
+    rgba(72, 159, 70, 0.1)
+  );
+}
+
+[data-theme="dark"] .contact_info_label {
+  color: #6666a0;
+}
+
+[data-theme="dark"] .contact_info_note {
+  color: #6666a0;
+}
+
+[data-theme="dark"] .side_button.cta_contact {
+  background: #1a1a2c;
+  color: #e8e8f0;
+  border-bottom-color: #2a2a3d;
+}
+
+[data-theme="dark"] .side_button.cta_contact:hover {
+  background: #252538;
+}
+
+[data-theme="dark"] .side_button.cta_brochure {
+  background: #161e18;
+  color: #e8e8f0;
+  border-bottom-color: #2a2a3d;
+}
+
+[data-theme="dark"] .side_button.cta_brochure:hover {
+  background: #1c2a1e;
+}
+
+[data-theme="dark"] .navigation_links {
+  background: rgba(20, 20, 36, 0.98);
+  border-color: #2a2a3d;
+}
+
+[data-theme="dark"] .navigation_links a {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+[data-theme="dark"] .navigation_links a:hover {
+  background: #2a2a3d;
+  color: #fff;
+}
+
+[data-theme="dark"] .navigation_login {
+  color: rgba(255, 255, 255, 0.45);
+  border-color: #3a3a55;
+}
+
+[data-theme="dark"] .navigation_login:hover {
+  color: rgba(255, 255, 255, 0.8);
+  border-color: #5a5a7a;
+  background: #2a2a3d;
+}
+
+/* Dark bg sections that use var(--color_dark) — override explicitly */
+[data-theme="dark"] .problems {
+  background: #0d0d1a;
+}
+
+[data-theme="dark"] .problem_item {
+  background: #1e1e2e;
+  border-color: #2a2a3d;
+}
+
+[data-theme="dark"] .problem_title {
+  color: #f2f2fa;
+}
+
+[data-theme="dark"] .problem_description {
+  color: #a0aabb;
+}
+
+[data-theme="dark"] .problems_title {
+  color: #f2f2fa;
+}
+
+[data-theme="dark"] .support_section {
+  background: linear-gradient(135deg, #0e1628 0%, #152040 100%);
+}
+
+/* ダークモードヒーロー背景は下部の統一ルールで管理 */
+
+[data-theme="dark"] .admin_sidebar {
+  background: #0d0d1a;
+}
+
+/* ── rel-section: スマートに事業成長 (light bg → dark surface) ── */
+[data-theme="dark"] .relation_section {
+  background: #1a1a2c;
+}
+
+[data-theme="dark"] .relation_title {
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .relation_sub {
+  color: #9999b8;
+}
+
+[data-theme="dark"] .relation_circle_sub {
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .relation_circle_name {
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .relation_matching_note {
+  color: #8888a8;
+}
+
+[data-theme="dark"] .relation_circle.dashboard {
+  background: #22223a;
+  border-color: #3a3a55;
+}
+
+[data-theme="dark"] .relation_circle.dashboard .relation_circle_name {
+  color: #c0c0d8;
+}
+
+[data-theme="dark"] .relation_group_label {
+  background: #2a2a3d;
+  color: #9999b8;
+}
+
+[data-theme="dark"] .relation_arrow_label {
+  color: #7777a0;
+}
+
+/* ── お客様の声カード テキスト ── */
+[data-theme="dark"] .case_title {
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .case_company {
+  color: #8888a8;
+}
+
+/* ── svc-card (サービスカード) ── */
+[data-theme="dark"] .service_card {
+  background: #1a1a2c;
+}
+
+[data-theme="dark"] .service_description {
+  color: #fff;
+}
+
+[data-theme="dark"] .service_price {
+  color: #e8e8f0;
+
+  span {
+    color: #9999b8;
+  }
+}
+
+[data-theme="dark"] .service_tag {
+  color: #8888a8;
+}
+
+[data-theme="dark"] .service_features li {
+  color: #9999b8;
+}
+
+[data-theme="dark"] .service_bottom {
+  border-top-color: #2a2a3d;
+}
+
+[data-theme="dark"] .service_card.field .service_top {
+  background: rgba(59, 111, 189, 0.15);
+}
+
+[data-theme="dark"] .service_card.sales .service_top {
+  background: rgba(72, 159, 70, 0.12);
+}
+
+[data-theme="dark"] .service_card.matching .service_top {
+  background: rgba(239, 202, 69, 0.08);
+}
+
+/* ── ba-item (Before/After) ── */
+[data-theme="dark"] .before_after_item {
+  background: #2a2a3d;
+  box-shadow: 0 fn.rem(4) fn.rem(24) rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .before_after_column:first-child {
+  border-right-color: #3a3a55;
+}
+
+[data-theme="dark"] .before_after_column_label {
+  color: #6666a0;
+}
+
+[data-theme="dark"] .before_after_point_text {
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .before_after_links {
+  border-top-color: #3a3a55;
+}
+
+[data-theme="dark"] .before_after_section {
+  background: #212136;
+}
+
+/* ── svc-pt-item (選ばれる理由カード) ── */
+[data-theme="dark"] .service_point_item {
+  background: #1a1a2c;
+}
+
+[data-theme="dark"] .service_point_description {
+  color: #8888a8;
+}
+
+/* ── tgt-card ── */
+[data-theme="dark"] .target_card {
+  background: #1a1a2c;
+}
+
+/* ── 導入事例詳細 hero (cd-hero) — background was var(--color_dark) which turns light ── */
+[data-theme="dark"] .case_detail_hero {
+  background: #0d0d1a;
+}
+
+/* ── ヒーローコントラスト強化: cs/pri/ct hero vs body ── */
+[data-theme="dark"] .pricing_hero,
+[data-theme="dark"] .contact_hero,
+[data-theme="dark"] .service_list_hero,
+[data-theme="dark"] .case_list_hero,
+[data-theme="dark"] .case_detail_hero,
+[data-theme="dark"] .service_hero_section {
+  background: linear-gradient(135deg, #0e2a54 0%, #163d6e 50%, #0a5872 100%);
+}
+
+/* ── フィーチャーブロック テキスト部分 ── */
+/* 奇数 (dark image / light text bg) */
+[data-theme="dark"] .feature_body {
+  background: #181828;
+}
+
+[data-theme="dark"] .feature_body.feature_field {
+  background: #181e30;
+}
+
+[data-theme="dark"] .feature_body.feature_sales {
+  background: #161e18;
+}
+
+[data-theme="dark"] .feature_body.feature_matching {
+  background: #1e1810;
+}
+
+/* 偶数 (light image / deeper text bg) */
+[data-theme="dark"] .feature_body.feature_body_dark {
+  background: #1a2030;
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .feature_body.feature_body_dark_sales {
+  background: #161e18;
+}
+
+[data-theme="dark"] .feature_body.feature_body_dark_matching {
+  background: #1e1a10;
+}
+
+[data-theme="dark"] .feature_title {
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .feature_description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .feature_points li {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── 料金表ダークモード対応 ── */
+[data-theme="dark"] .service_price_section {
+  background: #13131f;
+}
+
+[data-theme="dark"] .sales_price_box {
+  background: #1e1e2e;
+}
+
+[data-theme="dark"] .sales_price_card.mode_add .sales_price_card_amount {
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .sales_price_card.mode_add .sales_price_card_unit {
+  color: #9999b8;
+}
+
+[data-theme="dark"] .sales_price_box [style*="color:#888"] {
+  color: #6666a0 !important;
+}
+
+[data-theme="dark"] .sales_plus {
+  color: #c2c2dc;
+}
+
+[data-theme="dark"] .service_trial_cta {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 111, 189, 0.2),
+    rgba(59, 111, 189, 0.1)
+  );
+}
+
+[data-theme="dark"] .service_trial_cta.sales_background_cta {
+  background: linear-gradient(
+    135deg,
+    rgba(72, 159, 70, 0.2),
+    rgba(72, 159, 70, 0.1)
+  );
+}
+
+[data-theme="dark"] .service_trial_cta p {
+  color: #9999b8;
+}
+
+/* m2 マッチング 料金カード (inline style background:#fff を上書き) */
+[data-theme="dark"] .matching_plan_grid > div > div:last-child {
+  background: #1e1e2e !important;
+  border-color: #2a2a3d !important;
+}
+
+[data-theme="dark"] .matching_plan_grid > div > div:first-child {
+  background: #1a1a2c !important;
+  color: #9999b8 !important;
+}
+
+[data-theme="dark"] .matching_plan_grid li {
+  color: #9999b8 !important;
+}
+
+[data-theme="dark"] .matching_plan_grid [style*="font-size: 48px"] {
+  color: #e8e8f0 !important;
+}
+
+[data-theme="dark"] .matching_plan_grid [style*="color:#888"] {
+  color: #6666a0 !important;
+}
+
+[data-theme="dark"] .matching_plan_grid [style*="color:#444"] {
+  color: #9999b8 !important;
+}
+
+[data-theme="dark"] .pricing_tab_plans {
+  background: #1a1a2c;
+}
+
+[data-theme="dark"] .pricing_tab_chip {
+  background: #1e1e30;
+  border-bottom-color: #2a2a3d;
+  border-right-color: #2a2a3d;
+  color: #9999b8;
+}
+
+[data-theme="dark"] .pricing_tab_chip.highlight {
+  background: rgba(59, 111, 189, 0.2);
+  color: #7aaae8;
+}
+
+[data-theme="dark"] .pricing_tab_cell {
+  border-bottom-color: #2a2a3d;
+  border-right-color: #2a2a3d;
+  color: #c2c2dc;
+  background: #1a1a2c;
+}
+
+[data-theme="dark"] .pricing_tab_cell.label_cell {
+  background: #1e1e30;
+  color: #c0c0d8;
+}
+
+[data-theme="dark"] .pricing_tab_cell.price_cell {
+  background: #16162a;
+  color: #e8e8f0;
+}
+
+[data-theme="dark"] .pricing_tab_cell.price_cell span {
+  color: #9999b8;
+}
+
+[data-theme="dark"] .pricing_tab_cell.highlight_cell {
+  background: rgba(59, 111, 189, 0.15);
+}
+
+[data-theme="dark"] .price_note {
+  background: #1e1e30;
+  border-color: #2a2a3d;
+  color: #8888a8;
+}
+
+[data-theme="dark"] .pricing_tab_wrap {
+  box-shadow: 0 fn.rem(12) fn.rem(48) rgba(0, 0, 0, 0.5);
+}
+
+@keyframes scrollDotAnim {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  60% {
+    transform: translateY(fn.rem(10));
+    opacity: 0.3;
+  }
+}
+
+/* ══════════════════════════════════════════
+       SYSTEM LOADING OVERLAY
+       ※ 不要な場合は #system_loader { display:none } を追加するだけでOK
+       ══════════════════════════════════════════ */
+#system_loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #060c1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: fn.rem(16);
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+
+#system_loader.fade_out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#system_loader.is_done {
+  display: none;
+}
+
+.system_logo {
+  font-size: fn.rem(24);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.system_logo span {
+  color: var(--color_button);
+}
+
+.system_scan {
+  width: fn.rem(220);
+  height: fn.rem(1);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: fn.rem(1);
+  overflow: hidden;
+  position: relative;
+}
+
+.system_scan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color_button) 50%,
+    transparent
+  );
+  animation: sysScn 0.65s ease-in-out 1 forwards;
+}
+
+@keyframes sysScn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.system_bar {
+  width: fn.rem(220);
+  height: fn.rem(3);
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: fn.rem(2);
+  overflow: hidden;
+}
+
+.system_bar_fill {
+  height: 100%;
+  width: 0;
+  border-radius: fn.rem(2);
+  background: var(--color_button);
+  animation: sysFill 0.85s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+}
+
+@keyframes sysFill {
+  to {
+    width: 100%;
+  }
+}
+
+.system_text {
+  font-size: fn.rem(11);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.28);
+  font-family: "DM Sans", monospace;
+}
+
+/* On mobile, disable sticky scroll — normal hero */
+@media (max-width: fn.rem(960)) {
+  .hero.sticky_hero {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: calc(100vh - fn.rem(64));
+  }
+
+  #hero_scroll_container {
+    height: auto !important;
+  }
+}
+
+/* Transition for smooth theme switch */
+body,
+nav,
+.target_card,
+.faq_item,
+.admin_main,
+.admin_table_wrap,
+.admin_card,
+.admin_stat,
+.admin_table_head,
+.admin_table_row,
+.admin_button_outline,
+.case_list_filter,
+.side_button.cta_contact,
+.form_input,
+.form_select,
+.form_textarea,
+.admin_input,
+.admin_select,
+.admin_textarea,
+.filter_input,
+.filter_select,
+.targets_section,
+.faq_section,
+.relation_secondary_section,
+.sns_bar,
+.sns_item {
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s;
+}

@@ -1,0 +1,18 @@
+/** @format */
+@use "../styles/variables.scss" as *;
+@use "../styles/functions" as fn;
+@use "../styles/mixins" as mixin;
+
+.component {
+  display: contents;
+}
+
+.footer {
+  width: 100%;
+}
+
+@include mixin.respond-to($breakpoint-tablet) {
+  .footer {
+    padding-bottom: fn.rem(72);
+  }
+}

@@ -43,7 +43,11 @@ export default function Support() {
               ["group", "Facebook"],
             ].map(([icon, label]) => (
               <div className="sns_item" key={label}>
-                <div className="sns_icon"><Icon name={icon as "document" | "play" | "photo" | "group"} /></div>
+                <div className="sns_icon">
+                  <Icon
+                    name={icon as "document" | "play" | "photo" | "group"}
+                  />
+                </div>
                 <div className="sns_label">{label}</div>
               </div>
             ))}

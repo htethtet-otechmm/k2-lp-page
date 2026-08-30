@@ -15,7 +15,9 @@ export default function GrowthFlow() {
             <div className="relation_pair">
               <div className="flex_col_center">
                 <div className="relation_circle field relation_circle_compact">
-                  <div className="relation_circle_icon"><Icon name="field" /></div>
+                  <div className="relation_circle_icon">
+                    <Icon name="field" />
+                  </div>
                   <div className="relation_circle_label">建工管理</div>
                   <div className="relation_circle_name">現場管理</div>
                   <div className="relation_circle_sub">
@@ -31,7 +33,9 @@ export default function GrowthFlow() {
               </div>
               <div className="flex_col_center">
                 <div className="relation_circle sales relation_circle_compact">
-                  <div className="relation_circle_icon"><Icon name="sales" /></div>
+                  <div className="relation_circle_icon">
+                    <Icon name="sales" />
+                  </div>
                   <div className="relation_circle_label">建工管理</div>
                   <div className="relation_circle_name">販売管理</div>
                   <div className="relation_circle_sub">
@@ -47,7 +51,9 @@ export default function GrowthFlow() {
               </div>
             </div>
             <div className="relation_circle dashboard relation_database">
-              <div className="relation_circle_icon"><Icon name="database" /></div>
+              <div className="relation_circle_icon">
+                <Icon name="database" />
+              </div>
               <div className="relation_circle_name font_size_14">
                 現場データベース
               </div>
@@ -74,7 +80,9 @@ export default function GrowthFlow() {
               事業成長を加速
             </div>
             <div className="relation_circle matching">
-              <div className="relation_circle_icon"><Icon name="match" /></div>
+              <div className="relation_circle_icon">
+                <Icon name="match" />
+              </div>
               <div className="relation_circle_label">建工管理</div>
               <div className="relation_circle_name">マッチング</div>
               <div className="relation_circle_sub">

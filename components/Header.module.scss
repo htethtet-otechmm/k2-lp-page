@@ -1,0 +1,18 @@
+/** @format */
+@use "../styles/variables.scss" as *;
+@use "../styles/functions" as fn;
+@use "../styles/mixins" as mixin;
+
+.component {
+  display: contents;
+}
+
+.navigation {
+  min-height: $header-height;
+}
+
+@include mixin.respond-to($breakpoint-tablet) {
+  .navigation {
+    width: 100%;
+  }
+}

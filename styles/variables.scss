@@ -1,0 +1,7 @@
+/** @format */
+@use "functions" as fn;
+
+$breakpoint-desktop: fn.rem(1024);
+$breakpoint-tablet: fn.rem(960);
+$breakpoint-mobile: fn.rem(600);
+$header-height: fn.rem(64);
