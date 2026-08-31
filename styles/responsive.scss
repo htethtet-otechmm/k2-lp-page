@@ -112,6 +112,10 @@
     grid-template-columns: 1fr;
   }
 
+  .cases_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .flow_grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -192,7 +196,7 @@
   }
 
   .sns_inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .matching_plan_grid {
@@ -203,12 +207,6 @@
     width: 60%;
   }
 
-  .relation_layout {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
   .text_group_wrapper {
     display: flex;
     flex-direction: column;
@@ -216,28 +214,6 @@
     text-align: center;
     margin: 1.5rem 0;
     gap: 0.5rem;
-  }
-
-  @media (max-width: 60rem) {
-    .relation_arrow {
-      transform: none !important;
-      display: flex;
-      flex-direction: row !important;
-      align-items: center;
-      text-align: center;
-      padding: 1.5rem 0 !important;
-      gap: 0.75rem;
-    }
-
-    .relation_arrow .flex_center_gap_4 {
-      transform: rotate(90deg);
-    }
-
-    .relation_arrow svg,
-    .relation_arrow img {
-      transform: rotate(90deg);
-      display: block;
-    }
   }
 }
 
@@ -273,6 +249,29 @@
 
 /* ── 現場管理料金表：スマホ横スクロール対応 ── */
 @media (max-width: fn.rem(760)) {
+  .relation_layout {
+    flex-direction: column;
+    align-items: center;
+    gap: fn.rem(32);
+  }
+
+  .relation_efficiency,
+  .relation_arrow,
+  .relation_growth {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .relation_arrow {
+    padding: fn.rem(24) 0 !important;
+    flex-direction: row !important;
+    text-align: center;
+  }
+
+  .relation_arrow_track {
+    transform: rotate(90deg);
+  }
+
   .hero_entry_tag {
     font-size: fn.rem(13);
   }
@@ -316,10 +315,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .cases_grid {
-    grid-template-columns: 1fr;
-  }
-
   .before_after_links {
     flex-direction: column;
   }
@@ -329,6 +324,18 @@
     .button {
       text-align: center;
     }
+  }
+
+  .service_connect_bidir_arrow {
+    transform: rotate(90deg);
+  }
+
+  .sales_price_card_amount {
+    font-size: fn.rem(28);
+  }
+
+  .faq_question {
+    font-size: fn.rem(16);
   }
 }
 
@@ -432,11 +439,5 @@
   .before_after_head {
     flex-direction: column;
     align-items: flex-start;
-  }
-}
-
-@media (min-width: fn.rem(767)) {
-  .cases_grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 }

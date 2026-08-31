@@ -1,6 +1,8 @@
 /** @format */
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
+
 export default function CasesContent() {
   return (
     <div className="route_page">
@@ -26,27 +28,36 @@ export default function CasesContent() {
               type="text"
               placeholder="キーワードで検索（会社名・業種・課題など）"
             />
-            <select className="filter_select">
-              <option>業種から選ぶ</option>
-              <option>建築工事業</option>
-              <option>土木工事業</option>
-              <option>内装工事業</option>
-              <option>設備工事業</option>
-              <option>塗装工事業</option>
-            </select>
-            <select className="filter_select">
-              <option>製品から選ぶ</option>
-              <option>建工管理 現場管理</option>
-              <option>建工管理 販売管理</option>
-              <option>建工管理 マッチング</option>
-            </select>
-            <select className="filter_select">
-              <option>課題から選ぶ</option>
-              <option>現場管理の効率化</option>
-              <option>請求・書類管理</option>
-              <option>協力会社確保</option>
-              <option>情報共有</option>
-            </select>
+            <div className="filter_select_wrapper">
+              <select className="filter_select">
+                <option>業種から選ぶ</option>
+                <option>建築工事業</option>
+                <option>土木工事業</option>
+                <option>内装工事業</option>
+                <option>設備工事業</option>
+                <option>塗装工事業</option>
+              </select>
+              <ChevronDown className="filter_select_arrow" aria-hidden="true" />
+            </div>
+            <div className="filter_select_wrapper">
+              <select className="filter_select">
+                <option>製品から選ぶ</option>
+                <option>建工管理 現場管理</option>
+                <option>建工管理 販売管理</option>
+                <option>建工管理 マッチング</option>
+              </select>
+              <ChevronDown className="filter_select_arrow" aria-hidden="true" />
+            </div>
+            <div className="filter_select_wrapper">
+              <select className="filter_select">
+                <option>課題から選ぶ</option>
+                <option>現場管理の効率化</option>
+                <option>請求・書類管理</option>
+                <option>協力会社確保</option>
+                <option>情報共有</option>
+              </select>
+              <ChevronDown className="filter_select_arrow" aria-hidden="true" />
+            </div>
           </div>
         </div>
       </div>

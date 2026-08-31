@@ -335,11 +335,6 @@ export default function HomeContent() {
       </section>
       <section className="relation_section">
         <div className="container">
-          <h2 className="relation_title">
-            スマート<span className="particle">に</span>事業成長
-            <span className="particle">を</span>後押し
-            <span className="particle">する</span>仕組み
-          </h2>
           <div className="relation_layout">
             <div className="relation_efficiency">
               <div className="relation_group_label">業務を大幅効率化</div>
@@ -435,9 +430,8 @@ export default function HomeContent() {
                 <br />
                 時間・リソースを
               </div>
-              <div className="flex_center_gap_4">
+              <div className="relation_arrow_track">
                 <div className="relation_arrow_line"></div>
-                <div className="relation_arrow_head"></div>
               </div>
               <div className="relation_arrow_label nowrap">
                 マッチングへ活用

@@ -53,8 +53,14 @@
   border-color: var(--color_button);
 }
 
+.filter_select_wrapper {
+  position: relative;
+  min-width: fn.rem(125);
+}
+
 .filter_select {
-  padding: fn.rem(9) fn.rem(13);
+  width: 100%;
+  padding: fn.rem(9) fn.rem(40) fn.rem(9) fn.rem(13);
   border: fn.rem(2) solid var(--color_sub);
   border-radius: fn.rem(8);
   font-size: fn.rem(17);
@@ -63,6 +69,19 @@
   cursor: pointer;
   outline: none;
   min-width: fn.rem(125);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.filter_select_arrow {
+  position: absolute;
+  top: 50%;
+  right: fn.rem(13);
+  width: fn.rem(16);
+  height: fn.rem(16);
+  color: currentColor;
+  pointer-events: none;
+  transform: translateY(-50%);
 }
 
 .filter_select:focus {

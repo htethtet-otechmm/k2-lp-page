@@ -342,105 +342,109 @@ export default function FieldManagementContent() {
                 </a>
               </div>
               <div className="pricing_tab_wrap">
-                <div className="pricing_tab_head field">
-                  <h3>現場管理 料金プラン</h3>
-                  <p>現場管理とスタッフ・機材管理などを1つにまとめる</p>
-                </div>
-                <div className="pricing_tab_plans">
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_chip">機能</div>
-                    <div className="pricing_tab_chip">STANDARD</div>
-                    <div className="pricing_tab_chip highlight">PRO</div>
-                    <div className="pricing_tab_chip">PREMIUM</div>
+                <div className="pricing_tab_inner">
+                  <div className="pricing_tab_head field">
+                    <h3>現場管理 料金プラン</h3>
+                    <p>現場管理とスタッフ・機材管理などを1つにまとめる</p>
                   </div>
-                  <div className="pricing_tab_row field_plan_list"></div>
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_cell label_cell">
-                      総アカウント数
+                  <div className="pricing_tab_plans">
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_chip">機能</div>
+                      <div className="pricing_tab_chip">STANDARD</div>
+                      <div className="pricing_tab_chip highlight">PRO</div>
+                      <div className="pricing_tab_chip">PREMIUM</div>
                     </div>
-                    <div className="pricing_tab_cell">50人まで</div>
-                    <div className="pricing_tab_cell highlight_cell">
-                      150人まで
+                    <div className="pricing_tab_row field_plan_list"></div>
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_cell label_cell">
+                        総アカウント数
+                      </div>
+                      <div className="pricing_tab_cell">50人まで</div>
+                      <div className="pricing_tab_cell highlight_cell">
+                        150人まで
+                      </div>
+                      <div className="pricing_tab_cell">300人まで</div>
                     </div>
-                    <div className="pricing_tab_cell">300人まで</div>
-                  </div>
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_cell label_cell">
-                      管理者アカウント
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_cell label_cell">
+                        管理者アカウント
+                      </div>
+                      <div className="pricing_tab_cell">10人まで</div>
+                      <div className="pricing_tab_cell highlight_cell">
+                        20人まで
+                      </div>
+                      <div className="pricing_tab_cell">30人まで</div>
                     </div>
-                    <div className="pricing_tab_cell">10人まで</div>
-                    <div className="pricing_tab_cell highlight_cell">
-                      20人まで
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_cell label_cell">
+                        写真アップロード
+                      </div>
+                      <div className="pricing_tab_cell">100枚/案件</div>
+                      <div className="pricing_tab_cell highlight_cell">
+                        200枚/案件
+                      </div>
+                      <div className="pricing_tab_cell">300枚/案件</div>
                     </div>
-                    <div className="pricing_tab_cell">30人まで</div>
-                  </div>
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_cell label_cell">
-                      写真アップロード
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_cell label_cell">
+                        資料アップロード
+                      </div>
+                      <div className="pricing_tab_cell">30枚/案件</div>
+                      <div className="pricing_tab_cell highlight_cell">
+                        50枚/案件
+                      </div>
+                      <div className="pricing_tab_cell">100枚/案件</div>
                     </div>
-                    <div className="pricing_tab_cell">100枚/案件</div>
-                    <div className="pricing_tab_cell highlight_cell">
-                      200枚/案件
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_cell label_cell">
+                        機材・車両登録
+                      </div>
+                      <div className="pricing_tab_cell">50台まで</div>
+                      <div className="pricing_tab_cell highlight_cell">
+                        150台まで
+                      </div>
+                      <div className="pricing_tab_cell">300台まで</div>
                     </div>
-                    <div className="pricing_tab_cell">300枚/案件</div>
-                  </div>
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_cell label_cell">
-                      資料アップロード
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_cell label_cell">
+                        ガントチャート
+                      </div>
+                      <div className="pricing_tab_cell check_cell">✓</div>
+                      <div className="pricing_tab_cell check_cell highlight_cell">
+                        ✓
+                      </div>
+                      <div className="pricing_tab_cell check_cell">✓</div>
                     </div>
-                    <div className="pricing_tab_cell">30枚/案件</div>
-                    <div className="pricing_tab_cell highlight_cell">
-                      50枚/案件
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_cell label_cell">
+                        現場MAP機能
+                      </div>
+                      <div className="pricing_tab_cell check_cell">✓</div>
+                      <div className="pricing_tab_cell check_cell highlight_cell">
+                        ✓
+                      </div>
+                      <div className="pricing_tab_cell check_cell">✓</div>
                     </div>
-                    <div className="pricing_tab_cell">100枚/案件</div>
-                  </div>
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_cell label_cell">
-                      機材・車両登録
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_cell label_cell">
+                        日報・予定人工
+                      </div>
+                      <div className="pricing_tab_cell check_cell">✓</div>
+                      <div className="pricing_tab_cell check_cell highlight_cell">
+                        ✓
+                      </div>
+                      <div className="pricing_tab_cell check_cell">✓</div>
                     </div>
-                    <div className="pricing_tab_cell">50台まで</div>
-                    <div className="pricing_tab_cell highlight_cell">
-                      150台まで
+                    <div className="pricing_tab_row field_plan_list">
+                      <div className="pricing_tab_cell label_cell">
+                        サポート
+                      </div>
+                      <div className="pricing_tab_cell check_cell">✓</div>
+                      <div className="pricing_tab_cell check_cell highlight_cell">
+                        ✓
+                      </div>
+                      <div className="pricing_tab_cell check_cell">✓</div>
                     </div>
-                    <div className="pricing_tab_cell">300台まで</div>
-                  </div>
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_cell label_cell">
-                      ガントチャート
-                    </div>
-                    <div className="pricing_tab_cell check_cell">✓</div>
-                    <div className="pricing_tab_cell check_cell highlight_cell">
-                      ✓
-                    </div>
-                    <div className="pricing_tab_cell check_cell">✓</div>
-                  </div>
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_cell label_cell">
-                      現場MAP機能
-                    </div>
-                    <div className="pricing_tab_cell check_cell">✓</div>
-                    <div className="pricing_tab_cell check_cell highlight_cell">
-                      ✓
-                    </div>
-                    <div className="pricing_tab_cell check_cell">✓</div>
-                  </div>
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_cell label_cell">
-                      日報・予定人工
-                    </div>
-                    <div className="pricing_tab_cell check_cell">✓</div>
-                    <div className="pricing_tab_cell check_cell highlight_cell">
-                      ✓
-                    </div>
-                    <div className="pricing_tab_cell check_cell">✓</div>
-                  </div>
-                  <div className="pricing_tab_row field_plan_list">
-                    <div className="pricing_tab_cell label_cell">サポート</div>
-                    <div className="pricing_tab_cell check_cell">✓</div>
-                    <div className="pricing_tab_cell check_cell highlight_cell">
-                      ✓
-                    </div>
-                    <div className="pricing_tab_cell check_cell">✓</div>
                   </div>
                 </div>
               </div>

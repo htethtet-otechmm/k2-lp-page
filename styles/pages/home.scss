@@ -85,9 +85,13 @@
   color: #fff;
 }
 
-@media (max-width: fn.rem(350)) {
+@media (max-width: fn.rem(767)) {
   .hero_entry_tag {
     font-size: fn.rem(12);
+  }
+
+  .relation_cta {
+    flex-wrap: wrap;
   }
 }
 
@@ -856,7 +860,7 @@
 
 /* RELATION DIAGRAM — K2+S1 → DB → M2 */
 .relation_section {
-  padding: fn.rem(96) 0;
+  padding: fn.rem(36) 0 fn.rem(40);
   background: #f8f9fc;
 }
 
@@ -877,14 +881,25 @@
 }
 
 .relation_layout {
+  width: 100%;
+  max-width: fn.rem(700);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  max-width: fn.rem(1000);
   margin: 0 auto;
-  flex-wrap: wrap;
   gap: 0;
+}
+
+.relation_efficiency {
+  flex: 0 0 fn.rem(354);
+}
+
+.relation_arrow {
+  flex: 0 0 fn.rem(146);
+}
+
+.relation_growth {
+  flex: 0 0 fn.rem(200);
 }
 
 /* Left group: K2+S1 stacked */
@@ -943,7 +958,6 @@
   border-color: #ccd;
   box-shadow: var(--shadow_default);
   width: fn.rem(165);
-  height: fn.rem(165);
 }
 
 .relation_circle.matching {
@@ -1060,6 +1074,12 @@
   border-top: fn.rem(6) solid transparent;
   border-bottom: fn.rem(6) solid transparent;
   border-left: fn.rem(8) solid #ccd;
+}
+
+.relation_arrow_track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .relation_arrow_label {
