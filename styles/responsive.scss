@@ -219,7 +219,8 @@
 
 @media (max-width: fn.rem(600)) {
   .container {
-    padding: 0 fn.rem(16);
+    padding-right: $page-gutter-mobile;
+    padding-left: $page-gutter-mobile;
   }
 
   .section {
@@ -227,7 +228,13 @@
   }
 
   nav {
-    padding: 0 fn.rem(16);
+    padding-right: $page-gutter-mobile;
+    padding-left: $page-gutter-mobile;
+  }
+
+  .hero_inner {
+    padding-right: $page-gutter-mobile;
+    padding-left: $page-gutter-mobile;
   }
 
   .hero_buttons {
@@ -243,7 +250,17 @@
   }
 
   .case_detail_inner {
-    padding: 0 fn.rem(16);
+    padding-right: $page-gutter-mobile;
+    padding-left: $page-gutter-mobile;
+  }
+
+  .service_price_section > .service_price_inner {
+    padding-right: $page-gutter-mobile;
+    padding-left: $page-gutter-mobile;
+  }
+
+  .admin_main {
+    padding: $page-gutter-mobile;
   }
 }
 

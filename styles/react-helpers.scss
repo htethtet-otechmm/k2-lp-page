@@ -3,7 +3,6 @@
 @use "functions" as fn;
 @use "mixins" as mixin;
 
-/* React component equivalents for presentation-only inline styles in the source HTML. */
 .hero_badge_icon {
   width: fn.rem(20);
   color: #fff;

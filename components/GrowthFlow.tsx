@@ -77,7 +77,7 @@ export default function GrowthFlow() {
           </div>
           <div className="relation_growth">
             <div className="relation_group_label relation_growth_label">
-              事業成長を加速
+              事業成長を加速Phome
             </div>
             <div className="relation_circle matching">
               <div className="relation_circle_icon">

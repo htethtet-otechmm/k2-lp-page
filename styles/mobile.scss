@@ -1,0 +1,13 @@
+/** @format */
+@use "variables.scss" as *;
+@use "functions" as fn;
+@use "mixins" as mixin;
+
+@media (max-width: $breakpoint-mobile) {
+  .route_page section,
+  .route_page .service_list_hero,
+  .route_page .case_detail_section {
+    padding-top: $section-padding-mobile;
+    padding-bottom: $section-padding-mobile;
+  }
+}

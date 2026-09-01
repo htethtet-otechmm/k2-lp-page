@@ -85,16 +85,6 @@
   color: #fff;
 }
 
-@media (max-width: fn.rem(767)) {
-  .hero_entry_tag {
-    font-size: fn.rem(12);
-  }
-
-  .relation_cta {
-    flex-wrap: wrap;
-  }
-}
-
 .hero_entry_separator {
   color: rgba(255, 255, 255, 0.55);
   font-size: fn.rem(16);
@@ -860,7 +850,7 @@
 
 /* RELATION DIAGRAM — K2+S1 → DB → M2 */
 .relation_section {
-  padding: fn.rem(36) 0 fn.rem(40);
+  padding: fn.rem(96) 0 fn.rem(40);
   background: #f8f9fc;
 }
 
@@ -1385,4 +1375,18 @@
   margin-bottom: fn.rem(2);
   font-size: fn.rem(17);
   font-weight: 900;
+}
+
+@media (max-width: fn.rem(767)) {
+  .hero_entry_tag {
+    font-size: fn.rem(12);
+  }
+
+  .relation_cta {
+    flex-wrap: wrap;
+  }
+
+  .relation_section {
+    padding: fn.rem(30) 0 fn.rem(40);
+  }
 }

@@ -15,6 +15,7 @@ import "@/styles/theme.scss";
 import "@/styles/utilities.scss";
 import "@/styles/react-helpers.scss";
 import "@/styles/pages/field-management.scss";
+import "@/styles/mobile.scss";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
