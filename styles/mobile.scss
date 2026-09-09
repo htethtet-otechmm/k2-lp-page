@@ -3,11 +3,123 @@
 @use "functions" as fn;
 @use "mixins" as mixin;
 
+@media (max-width: $breakpoint-tablet) {
+  .flow_grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: fn.rem(32);
+    margin-top: fn.rem(32);
+  }
+
+  .flow_grid::before {
+    display: none;
+  }
+
+  .flow_item {
+    display: grid;
+    grid-template-columns: fn.rem(64) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    column-gap: fn.rem(20);
+    padding: 0;
+    text-align: left;
+  }
+
+  .flow_item:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: fn.rem(32);
+    left: fn.rem(31);
+    width: fn.rem(2);
+    height: calc(100% + #{fn.rem(32)});
+    background: var(--color_field);
+    z-index: 0;
+  }
+
+  .flow_item .flow_circle {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow_item .flow_number,
+  .flow_item .flow_title,
+  .flow_item .flow_description {
+    grid-column: 2;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .flow_item .flow_description {
+    font-size: fn.rem(14);
+    line-height: 1.7;
+  }
+
+  #__next
+    :is(.button, .side_button, .form_submit, .admin_button, .admin_back_button),
+  #__next main button:not(.hero_slide_description, .hero_tab_outside_tab) {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    flex: 0 0 auto;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .hero_buttons,
+  .service_hero_inner_buttons,
+  .field_lp_cta_buttons,
+  .relation_cta,
+  .cta_bar_actions,
+  .footer_cta_bar_actions,
+  .side_cta {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .side_cta .side_button {
+    min-height: fn.rem(52);
+  }
+
+  .side_cta .side_button.cta_contact {
+    border-bottom: fn.rem(1) solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .site_footer {
+    padding-bottom: calc(#{fn.rem(120)} + env(safe-area-inset-bottom));
+  }
+
+  .side_cta {
+    padding-bottom: env(safe-area-inset-bottom);
+    background: var(--color_accent);
+  }
+}
+
 @media (max-width: $breakpoint-mobile) {
   .route_page section,
   .route_page .service_list_hero,
   .route_page .case_detail_section {
     padding-top: $section-padding-mobile;
     padding-bottom: $section-padding-mobile;
+  }
+}
+
+@media (max-width: fn.rem(720)) {
+  .home_relation .relation_pair {
+    position: relative;
+    margin-bottom: fn.rem(33);
+  }
+
+  .home_relation .relation_down:not(.sales) {
+    display: none;
+  }
+
+  .home_relation .relation_down.sales {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

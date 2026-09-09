@@ -69,7 +69,6 @@
   display: flex;
   align-items: center;
   gap: fn.rem(8);
-  flex-wrap: wrap;
   margin-bottom: fn.rem(18);
   justify-content: flex-start;
 }
@@ -1378,8 +1377,20 @@
 }
 
 @media (max-width: fn.rem(767)) {
+  .hero {
+    padding: 0 !important;
+  }
   .hero_entry_tag {
     font-size: fn.rem(12);
+  }
+
+  .hero_service_badge {
+    flex-wrap: wrap;
+    text-align: left;
+
+    .hero_service_badge_arrow {
+      display: none;
+    }
   }
 
   .relation_cta {

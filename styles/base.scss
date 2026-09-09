@@ -113,7 +113,7 @@ nav.is_scrolled {
   gap: 0;
 }
 
-.navigation_links a {
+.navigation_links > a {
   font-size: fn.rem(15);
   font-weight: 500;
   padding: fn.rem(6) fn.rem(10);
@@ -127,7 +127,7 @@ nav.is_scrolled {
   white-space: nowrap;
 }
 
-.navigation_links a:hover {
+.navigation_links > a:hover {
   background: var(--color_main_light);
   color: var(--color_main);
 }

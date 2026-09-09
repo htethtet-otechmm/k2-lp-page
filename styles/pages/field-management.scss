@@ -180,7 +180,7 @@
 
   & .field_lp_feature_grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: fn.rem(18);
   }
 
@@ -356,10 +356,10 @@
   background: #1e1e2e;
 }
 
-/* レスポンシブ：中間幅は2カラム */
+/* Feature cards: 4 columns on desktop, then 3, 2 and 1. */
 @media (max-width: fn.rem(1024)) {
-  .field_lp_feature_grid {
-    grid-template-columns: repeat(2, 1fr);
+  .field_lp_value .field_lp_feature_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -369,7 +369,7 @@
   .field_lp_intro_inner,
   .field_lp_support_grid,
   .field_lp_reason_inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .field_lp_hero .field_lp_hero_logo {
@@ -381,7 +381,7 @@
   }
 
   .field_lp_value .field_lp_feature_grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .field_lp_reason .field_lp_reason_inner {
@@ -393,12 +393,21 @@
   }
 
   .relation_efficiency {
-    background-color: rgb(253, 253, 217);
+    background-color: #ffffff;
     padding: fn.rem(20);
+    border-radius: var(--radius_default);
   }
 
-      .relation_pair {
-        background: #f2f2f2;
-        padding: fn.rem(20);
-      }
+  .relation_pair {
+    background: #f8f9fc;
+    padding: fn.rem(20);
+    border-radius: var(--radius_default);
+    border: fn.rem(1) solid var(--color_sub);
+  }
+}
+
+@media (max-width: fn.rem(480)) {
+  .field_lp_value .field_lp_feature_grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

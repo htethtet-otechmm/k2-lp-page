@@ -67,7 +67,7 @@
   border-bottom-color: #2a2a3d;
 }
 
-[data-theme="dark"] .navigation_links a:hover {
+[data-theme="dark"] .navigation_links > a:hover {
   background: #2a2a3d;
 }
 
@@ -92,6 +92,69 @@
 }
 
 /* White/light backgrounds → dark surfaces */
+/* Monochrome external SVGs cannot inherit the page's text color. */
+[data-theme="dark"] .field_lp_feature_icon img,
+[data-theme="dark"] .field_lp_support_icon img {
+  filter: brightness(0) invert(1);
+}
+
+/* Keep brand colors and dark lettering readable on a neutral image surface. */
+[data-theme="dark"] .service_hero_inner_logo,
+[data-theme="dark"] .field_lp_hero_logo {
+  background: #fff;
+  border-radius: fn.rem(12);
+  padding: fn.rem(12);
+}
+
+[data-theme="dark"] .about_vision_right_photos img,
+[data-theme="dark"] .field_lp_reason_image img {
+  background-color: #fff;
+}
+
+/* Preserve the transparent space around product device mockups. */
+[data-theme="dark"] .feature_screen img,
+[data-theme="dark"] .service_hero_inner_screen img,
+[data-theme="dark"] .field_lp_hero_screen img,
+[data-theme="dark"] .screen_panel img {
+  background-color: transparent;
+}
+
+/* Sprite symbols contain outline paths; a fill alone loses their detail. */
+[data-theme="dark"] svg:has(> use):not([stroke]):not(.flow_circle svg) {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+[data-theme="dark"] .flow_circle {
+  color: #fff;
+  border-color: #fff;
+}
+
+[data-theme="dark"] .flow_circle svg {
+  fill: #fff;
+  stroke: none;
+}
+
+[data-theme="dark"] .faq_toggle {
+  color: #70b3ff;
+  background: #242d44;
+}
+
+[data-theme="dark"] .faq_item.open .faq_toggle {
+  color: #fff;
+  background: var(--color_field);
+}
+
+/* These mobile diagram surfaces otherwise remain white behind light icons. */
+[data-theme="dark"] .relation_efficiency,
+[data-theme="dark"] .relation_pair {
+  background: #1e1e2e;
+  border-color: #3a3a55;
+}
+
 [data-theme="dark"] .target_card,
 [data-theme="dark"] .faq_item,
 [data-theme="dark"] .case_list_card,
@@ -330,11 +393,11 @@
   border-color: #2a2a3d;
 }
 
-[data-theme="dark"] .navigation_links a {
+[data-theme="dark"] .navigation_links > a {
   color: rgba(255, 255, 255, 0.75);
 }
 
-[data-theme="dark"] .navigation_links a:hover {
+[data-theme="dark"] .navigation_links > a:hover {
   background: #2a2a3d;
   color: #fff;
 }

@@ -34,7 +34,7 @@ export default function PricingContent() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  現場管理を無料で試す →
+                  現場管理を無料で試す <span>→</span>
                 </a>
               </div>
               <div className="pricing_tab_wrap">
@@ -165,7 +165,7 @@ export default function PricingContent() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  販売管理を無料で試す →
+                  販売管理を無料で試す <span>→</span>
                 </a>
               </div>
               <div className="pricing_tab_wrap">

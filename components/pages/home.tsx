@@ -5,8 +5,8 @@ export default function HomeContent() {
   return (
     <div className="route_page">
       <section className="hero">
-        <div className="hero_inner">
-          <div>
+        <div className="hero_inner home_hero_inner">
+          <div className="home_hero_copy">
             <div className="hero_entry_tags">
               <span className="hero_entry_tag">見積・現場・請求の一本化</span>
               <span className="hero_entry_separator">×</span>
@@ -333,7 +333,7 @@ export default function HomeContent() {
           </div>
         </div>
       </section>
-      <section className="relation_section">
+      <section className="relation_section home_relation">
         <div className="container">
           <h2 className="relation_title">
             スマート<span className="particle">に</span>事業成長

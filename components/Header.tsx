@@ -41,13 +41,21 @@ export default function Header() {
           onClick={() => setOpen(false)}
           aria-label="建工管理"
         >
-          <Image
-            src="/main_logo.svg"
-            alt="建工管理"
-            width={180}
-            height={44}
-            priority
-          />
+          <picture>
+            <source
+              media="(max-width: 60rem)"
+              srcSet="/layout/main_logo_sp.svg"
+              width={128}
+              height={100}
+            />
+            <Image
+              src="/main_logo.svg"
+              alt="建工管理"
+              width={180}
+              height={44}
+              priority
+            />
+          </picture>
         </Link>
         <div className="navigation_right">
           <div
@@ -71,27 +79,29 @@ export default function Header() {
             >
               {dark ? <Moon size={24} /> : <Sun size={24} />}
             </button>
-          </div>
-          <div className="navigation_actions">
-            <Link
-              className="navigation_login"
-              href="/brochure"
-              onClick={() => setOpen(false)}
-            >
-              資料請求
-            </Link>
-            <Link
-              className="navigation_cta"
-              href="/contact"
-              onClick={() => setOpen(false)}
-            >
-              お問い合わせ
-            </Link>
+            <div className="navigation_actions">
+              <Link
+                className="navigation_login"
+                href="/brochure"
+                onClick={() => setOpen(false)}
+              >
+                資料請求
+              </Link>
+              <Link
+                className="navigation_cta"
+                href="/contact"
+                onClick={() => setOpen(false)}
+              >
+                お問い合わせ
+              </Link>
+            </div>
           </div>
           <button
             className={`navigation_hamburger${open ? " open" : ""}`}
             onClick={() => setOpen(!open)}
             aria-label="メニューを開閉"
+            aria-expanded={open}
+            aria-controls="navigation_links"
           >
             <span />
             <span />

@@ -20,7 +20,7 @@ export default function CasesContent() {
           </p>
         </div>
       </section>
-      <div className="case_list_filter">
+      {/* <div className="case_list_filter">
         <div className="container">
           <div className="case_list_filter_inner">
             <input
@@ -60,7 +60,7 @@ export default function CasesContent() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <section className="case_list">
         <div className="container">
           <div className="case_list_grid">
