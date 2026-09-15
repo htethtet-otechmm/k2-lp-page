@@ -154,7 +154,10 @@
   background: var(--color_field);
 }
 
-/* These mobile diagram surfaces otherwise remain white behind light icons. */
+[data-theme="dark"] .service_connect_top {
+  background: #2a2a2a;
+}
+
 [data-theme="dark"] .relation_efficiency,
 [data-theme="dark"] .relation_pair {
   background: #1e1e2e;

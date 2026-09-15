@@ -81,9 +81,9 @@ export default function Footer() {
                 {index === 2 && (
                   <div className="site_footer_phone">
                     <div className="site_footer_phone_title">お電話</div>
-                    <div className="site_footer_phone_number">0120-XXX-XXX</div>
+                    <div className="site_footer_phone_number">052-228-3646</div>
                     <div className="site_footer_phone_hour">
-                      平日 9:00〜18:00（土日祝休）
+                      平日 9:30〜17:30（土日祝休）
                     </div>
                   </div>
                 )}
