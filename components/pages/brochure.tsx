@@ -21,11 +21,11 @@ export default function BrochureContent() {
       setFeedback("会社名・氏名・資料請求の理由をご記入ください。");
       return;
     }
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID?.trim();
     const templateId =
-      process.env.NEXT_PUBLIC_EMAILJS_BROCHURE_TEMPLATE_ID ||
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      process.env.NEXT_PUBLIC_EMAILJS_BROCHURE_TEMPLATE_ID?.trim() ||
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID?.trim();
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY?.trim();
     if (!serviceId || !templateId || !publicKey) {
       setStatus("error");
       setFeedback(
@@ -50,13 +50,9 @@ export default function BrochureContent() {
           prefecture: value("prefecture") || "未選択",
           job_title: value("job_title") || "未選択",
           reason: value("reason"),
-          // Include all brochure fields in the existing contact template too.
+          // The email template already displays name, email, phone and service.
           message: [
-            "資料請求",
             `会社名: ${value("company")}`,
-            `氏名: ${value("from_name")}`,
-            `メールアドレス: ${value("reply_to")}`,
-            `電話番号: ${value("phone") || "未入力"}`,
             `業種: ${value("industry") || "未選択"}`,
             `都道府県: ${value("prefecture") || "未選択"}`,
             `役職: ${value("job_title") || "未選択"}`,
@@ -67,19 +63,43 @@ export default function BrochureContent() {
         },
         { publicKey },
       );
-      form.reset();
-      setStatus("success");
-      setFeedback(
-        "資料請求を受け付けました。担当者よりご入力のメールアドレス宛に資料をお送りします。",
-      );
-    } catch {
+    } catch (error: unknown) {
+      const errorStatus =
+        error && typeof error === "object" && "status" in error
+          ? Number(error.status)
+          : 0;
+      // Report the provider response for diagnosis, never the submitted form data.
+      if (process.env.NODE_ENV === "development") {
+        console.error("Brochure EmailJS request failed:", error);
+      }
       setStatus("error");
-      setFeedback(
-        "送信に失敗しました。入力内容は保持されています。時間をおいて再度お試しください。",
-      );
+      if (errorStatus === 429) {
+        setFeedback(
+          "送信回数の上限に達しています。しばらくしてから再度お試しいただくか、お問い合わせください。（エラー: 429）入力内容は保持されています。",
+        );
+      } else if ([400, 401, 403, 404, 422].includes(errorStatus)) {
+        setFeedback(
+          `現在フォームから送信できません。お問い合わせ窓口までご連絡ください。（エラー: ${errorStatus}）入力内容は保持されています。`,
+        );
+      } else if (!errorStatus) {
+        setFeedback(
+          "送信を確認できませんでした。通信環境やブラウザの通信制限をご確認ください。入力内容は保持されています。",
+        );
+      } else {
+        setFeedback(
+          `送信に失敗しました。時間をおいて再度お試しください。（エラー: ${errorStatus}）入力内容は保持されています。`,
+        );
+      }
+      return;
     } finally {
       sending.current = false;
     }
+    // A UI reset must not turn an accepted email into a reported send failure.
+    setStatus("success");
+    setFeedback(
+      "資料請求を受け付けました。担当者よりご入力のメールアドレス宛に資料をお送りします。",
+    );
+    form.reset();
   };
 
   return (

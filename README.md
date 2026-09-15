@@ -54,14 +54,18 @@ the form shows an error and does not attempt to send.
 ### Brochure requests
 
 The brochure form uses the same EmailJS service and public key as the contact
-form. By default it uses `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, with every brochure
-field included in `{{message}}` and `{{service}}` set to `資料請求`.
+form. By default it uses `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, with company,
+industry, prefecture, job title and request reason included in `{{message}}`.
+Name, email and phone use the template's separate fields, and `{{service}}`
+is set to `資料請求`, so these details are not repeated in the message.
 
 Optionally set `NEXT_PUBLIC_EMAILJS_BROCHURE_TEMPLATE_ID` to use a dedicated
 template. It receives `{{company}}`, `{{from_name}}`, `{{reply_to}}`, `{{phone}}`,
 `{{industry}}`, `{{prefecture}}`, `{{job_title}}`, `{{reason}}`, `{{service}}`,
 and `{{message}}`. Configure the recipient in EmailJS and Reply-To as
 `{{reply_to}}`. Restart/rebuild after changing environment variables.
+Display either `{{message}}` or the individual brochure detail fields to avoid
+duplicating those details in a custom template.
 
 This sends the request to your team; it does not automatically attach or
 email the PDF to the requester. The team can follow up as described on the page.
