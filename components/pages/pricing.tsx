@@ -29,7 +29,7 @@ export default function PricingContent() {
                   </p>
                 </div>
                 <a
-                  className="button button_accent"
+                  className="button button_accent button_with_arrow"
                   href="https://kenkou-kanri.jp/auth/signup/register"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -160,7 +160,7 @@ export default function PricingContent() {
                   <p>クレジットカード不要。最小1アカウントから始められます。</p>
                 </div>
                 <a
-                  className="button button_accent"
+                  className="button button_accent button_with_arrow"
                   href="https://kenkou-kanri.jp/auth/signup/register"
                   target="_blank"
                   rel="noopener noreferrer"

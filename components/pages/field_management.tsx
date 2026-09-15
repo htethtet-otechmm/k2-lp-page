@@ -333,7 +333,7 @@ export default function FieldManagementContent() {
                   </p>
                 </div>
                 <a
-                  className="button button_accent"
+                  className="button button_accent button_with_arrow"
                   href="https://kenkou-kanri.jp/auth/signup/register"
                   target="_blank"
                   rel="noopener noreferrer"

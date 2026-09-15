@@ -99,11 +99,17 @@
 }
 
 /* Keep brand colors and dark lettering readable on a neutral image surface. */
-[data-theme="dark"] .service_hero_inner_logo,
-[data-theme="dark"] .field_lp_hero_logo {
+[data-theme="dark"] .service_hero_inner_logo {
   background: #fff;
   border-radius: fn.rem(12);
   padding: fn.rem(12);
+}
+
+[data-theme="dark"] .field_lp_hero_logo {
+  content: url("/genbakanri/genbakanri_logo_dark.svg");
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 
 [data-theme="dark"] .about_vision_right_photos img,
