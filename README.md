@@ -51,6 +51,21 @@ To verify delivery after configuration, submit the contact form with a test
 message and check the configured recipient inbox. Without configuration,
 the form shows an error and does not attempt to send.
 
+### Brochure requests
+
+The brochure form uses the same EmailJS service and public key as the contact
+form. By default it uses `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, with every brochure
+field included in `{{message}}` and `{{service}}` set to `資料請求`.
+
+Optionally set `NEXT_PUBLIC_EMAILJS_BROCHURE_TEMPLATE_ID` to use a dedicated
+template. It receives `{{company}}`, `{{from_name}}`, `{{reply_to}}`, `{{phone}}`,
+`{{industry}}`, `{{prefecture}}`, `{{job_title}}`, `{{reason}}`, `{{service}}`,
+and `{{message}}`. Configure the recipient in EmailJS and Reply-To as
+`{{reply_to}}`. Restart/rebuild after changing environment variables.
+
+This sends the request to your team; it does not automatically attach or
+email the PDF to the requester. The team can follow up as described on the page.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

@@ -1,6 +1,87 @@
 /** @format */
+import emailjs from "@emailjs/browser";
+import { useRef, useState, type FormEvent } from "react";
 import { ChevronDown } from "lucide-react";
 export default function BrochureContent() {
+  const sending = useRef(false);
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+  const [feedback, setFeedback] = useState("");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (sending.current) return;
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    const value = (key: string) => String(data.get(key) ?? "").trim();
+    if (!value("company") || !value("from_name") || !value("reason")) {
+      setStatus("error");
+      setFeedback("会社名・氏名・資料請求の理由をご記入ください。");
+      return;
+    }
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId =
+      process.env.NEXT_PUBLIC_EMAILJS_BROCHURE_TEMPLATE_ID ||
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus("error");
+      setFeedback(
+        "現在フォームから送信できません。時間をおいて再度お試しください。",
+      );
+      return;
+    }
+    sending.current = true;
+    setStatus("sending");
+    setFeedback("");
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: value("from_name"),
+          reply_to: value("reply_to"),
+          phone: value("phone"),
+          service: "資料請求",
+          company: value("company"),
+          industry: value("industry") || "未選択",
+          prefecture: value("prefecture") || "未選択",
+          job_title: value("job_title") || "未選択",
+          reason: value("reason"),
+          // Include all brochure fields in the existing contact template too.
+          message: [
+            "資料請求",
+            `会社名: ${value("company")}`,
+            `氏名: ${value("from_name")}`,
+            `メールアドレス: ${value("reply_to")}`,
+            `電話番号: ${value("phone") || "未入力"}`,
+            `業種: ${value("industry") || "未選択"}`,
+            `都道府県: ${value("prefecture") || "未選択"}`,
+            `役職: ${value("job_title") || "未選択"}`,
+            "",
+            "資料請求の理由:",
+            value("reason"),
+          ].join("\n"),
+        },
+        { publicKey },
+      );
+      form.reset();
+      setStatus("success");
+      setFeedback(
+        "資料請求を受け付けました。担当者よりご入力のメールアドレス宛に資料をお送りします。",
+      );
+    } catch {
+      setStatus("error");
+      setFeedback(
+        "送信に失敗しました。入力内容は保持されています。時間をおいて再度お試しください。",
+      );
+    } finally {
+      sending.current = false;
+    }
+  };
+
   return (
     <div className="route_page">
       <section className="contact_hero">
@@ -65,52 +146,77 @@ export default function BrochureContent() {
                 </p>
               </div>
             </div>
-            <div>
+            <form onSubmit={handleSubmit} aria-busy={status === "sending"}>
               <h3 className="form_section_title">資料請求フォーム</h3>
               <div className="form_group">
-                <label className="form_label">
+                <label className="form_label" htmlFor="brochure_company">
                   会社名 <span className="required">必須</span>
                 </label>
                 <input
                   className="form_input"
+                  id="brochure_company"
+                  name="company"
+                  disabled={status === "sending"}
+                  required
                   type="text"
                   placeholder="株式会社オーテクニック"
                 />
               </div>
               <div className="form_group">
-                <label className="form_label">
+                <label className="form_label" htmlFor="brochure_from_name">
                   氏名 <span className="required">必須</span>
                 </label>
                 <input
                   className="form_input"
+                  id="brochure_from_name"
+                  name="from_name"
+                  disabled={status === "sending"}
+                  required
                   type="text"
                   placeholder="例：山田 太郎"
                 />
               </div>
               <div className="form_group">
-                <label className="form_label">
+                <label className="form_label" htmlFor="brochure_reply_to">
                   メールアドレス <span className="required">必須</span>
                 </label>
                 <input
                   className="form_input"
+                  id="brochure_reply_to"
+                  name="reply_to"
+                  disabled={status === "sending"}
+                  required
                   type="email"
                   placeholder="enquiry@kenkou-kanri.jp"
                 />
               </div>
               <div className="form_group">
-                <label className="form_label">電話番号</label>
+                <label className="form_label" htmlFor="brochure_phone">
+                  電話番号
+                </label>
                 <input
                   className="form_input"
+                  id="brochure_phone"
+                  name="phone"
+                  disabled={status === "sending"}
                   type="tel"
                   placeholder="お電話（052-228-3646）"
                 />
               </div>
 
               <div className="form_group">
-                <label className="form_label">業種</label>
+                <label className="form_label" htmlFor="brochure_industry">
+                  業種
+                </label>
                 <div className="custom_select_wrapper">
-                  <select className="form_select">
-                    <option>選択してください</option>
+                  <select
+                    className="form_select"
+                    id="brochure_industry"
+                    name="industry"
+                    defaultValue=""
+                    disabled={status === "sending"}
+                  >
+                    <option value="">選択してください</option>
                     <option>建築工事業</option>
                     <option>土木工事業</option>
                     <option>内装工事業</option>
@@ -125,10 +231,18 @@ export default function BrochureContent() {
               </div>
 
               <div className="form_group">
-                <label className="form_label">都道府県</label>
+                <label className="form_label" htmlFor="brochure_prefecture">
+                  都道府県
+                </label>
                 <div className="custom_select_wrapper">
-                  <select className="form_select">
-                    <option>選択してください</option>
+                  <select
+                    className="form_select"
+                    id="brochure_prefecture"
+                    name="prefecture"
+                    defaultValue=""
+                    disabled={status === "sending"}
+                  >
+                    <option value="">選択してください</option>
                     <option>北海道</option>
                     <option>青森県</option>
                     <option>岩手県</option>
@@ -182,10 +296,18 @@ export default function BrochureContent() {
               </div>
 
               <div className="form_group">
-                <label className="form_label">役職</label>
+                <label className="form_label" htmlFor="brochure_job_title">
+                  役職
+                </label>
                 <div className="custom_select_wrapper">
-                  <select className="form_select">
-                    <option>選択してください</option>
+                  <select
+                    className="form_select"
+                    id="brochure_job_title"
+                    name="job_title"
+                    defaultValue=""
+                    disabled={status === "sending"}
+                  >
+                    <option value="">選択してください</option>
                     <option>代表・経営者</option>
                     <option>役員</option>
                     <option>部長・課長</option>
@@ -198,16 +320,32 @@ export default function BrochureContent() {
               </div>
 
               <div className="form_group">
-                <label className="form_label">
+                <label className="form_label" htmlFor="brochure_reason">
                   資料請求の理由 <span className="required">必須</span>
                 </label>
                 <textarea
                   className="form_textarea"
+                  id="brochure_reason"
+                  name="reason"
+                  required
+                  disabled={status === "sending"}
                   placeholder="例：現場管理のデジタル化を検討しています。料金や機能の詳細を知りたいです。"
                 ></textarea>
               </div>
-              <button className="form_submit">資料を請求する →</button>
-            </div>
+              <button
+                className="form_submit"
+                type="submit"
+                disabled={status === "sending"}
+              >
+                {status === "sending" ? "送信中…" : "資料を請求する →"}
+              </button>
+              <p
+                className="form_feedback"
+                role={status === "error" ? "alert" : "status"}
+              >
+                {feedback}
+              </p>
+            </form>
           </div>
         </div>
       </section>
