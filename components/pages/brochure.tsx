@@ -74,7 +74,7 @@ export default function BrochureContent() {
                 <input
                   className="form_input"
                   type="text"
-                  placeholder="例：◯◯建設株式会社"
+                  placeholder="株式会社オーテクニック"
                 />
               </div>
               <div className="form_group">
@@ -94,7 +94,7 @@ export default function BrochureContent() {
                 <input
                   className="form_input"
                   type="email"
-                  placeholder="例：info@example.com"
+                  placeholder="enquiry@kenkou-kanri.jp"
                 />
               </div>
               <div className="form_group">
@@ -102,11 +102,10 @@ export default function BrochureContent() {
                 <input
                   className="form_input"
                   type="tel"
-                  placeholder="例：052-XXX-XXXX"
+                  placeholder="お電話（052-228-3646）"
                 />
               </div>
 
-              {/* 業種 Select Box ပြင်ဆင်ချက် */}
               <div className="form_group">
                 <label className="form_label">業種</label>
                 <div className="custom_select_wrapper">
@@ -125,7 +124,6 @@ export default function BrochureContent() {
                 </div>
               </div>
 
-              {/* 都道府県 Select Box ပြင်ဆင်ချက် */}
               <div className="form_group">
                 <label className="form_label">都道府県</label>
                 <div className="custom_select_wrapper">
@@ -183,7 +181,6 @@ export default function BrochureContent() {
                 </div>
               </div>
 
-              {/* 役職 Select Box ပြင်ဆင်ချက် */}
               <div className="form_group">
                 <label className="form_label">役職</label>
                 <div className="custom_select_wrapper">

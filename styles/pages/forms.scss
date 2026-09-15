@@ -139,6 +139,17 @@
   background: #0262cc;
 }
 
+.form_submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.form_feedback:not(:empty) {
+  margin-top: fn.rem(16);
+  color: var(--color_text);
+  line-height: 1.7;
+}
+
 .support_panel {
   background: linear-gradient(135deg, var(--color_field_light), #d6e6f8);
   border-radius: var(--radius_default);

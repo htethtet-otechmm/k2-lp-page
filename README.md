@@ -24,6 +24,33 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Contact form — EmailJS
+
+Copy `.env.example` to `.env.local` and fill in your EmailJS service ID,
+template ID, and public key. Restart the development server after changing
+these values; rebuild the application for production. These public values
+are included in the browser bundle. No private EmailJS key is needed.
+
+Configure the recipient address in your EmailJS template. Set Reply-To to
+`{{reply_to}}` and use these variables in the subject/body:
+
+```text
+お問い合わせ：{{from_name}}
+
+会社名・お名前: {{from_name}}
+メールアドレス: {{reply_to}}
+電話番号: {{phone}}
+ご興味のあるサービス: {{service}}
+
+{{message}}
+```
+
+Use EmailJS's normal double-brace variables so user input is escaped. The
+contact form uses the official [EmailJS browser SDK](https://www.emailjs.com/docs/sdk/send/).
+To verify delivery after configuration, submit the contact form with a test
+message and check the configured recipient inbox. Without configuration,
+the form shows an error and does not attempt to send.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
