@@ -154,15 +154,6 @@
   background: var(--color_field);
 }
 
-[data-theme="dark"] .service_connect_top {
-  background: #2a2a2a;
-}
-
-[data-theme="dark"] .relation_efficiency,
-[data-theme="dark"] .relation_pair {
-  border-color: #3a3a55;
-}
-
 [data-theme="dark"] .target_card,
 [data-theme="dark"] .faq_item,
 [data-theme="dark"] .case_list_card,
@@ -902,7 +893,14 @@
 }
 
 @media (max-width: fn.rem(760)) {
-  .relation_pair {
+  [data-theme="dark"] .relation_pair {
+    border-color: #3a3a55;
+    background: #2a2a2a;
+    border-radius: var(--radius_default);
+    border: fn.rem(1) solid var(--color_sub);
+  }
+
+  [data-theme="dark"] .service_connect_top {
     background: #2a2a2a;
   }
 }
