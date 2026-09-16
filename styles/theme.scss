@@ -160,7 +160,6 @@
 
 [data-theme="dark"] .relation_efficiency,
 [data-theme="dark"] .relation_pair {
-  background: #1e1e2e;
   border-color: #3a3a55;
 }
 
@@ -899,6 +898,12 @@
 
   #hero_scroll_container {
     height: auto !important;
+  }
+}
+
+@media (max-width: fn.rem(760)) {
+  .relation_pair {
+    background: #2a2a2a;
   }
 }
 
