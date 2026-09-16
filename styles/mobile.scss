@@ -115,6 +115,14 @@
   .home_relation .relation_pair {
     position: relative;
     margin-bottom: fn.rem(33);
+    border-color: #3a3a55;
+    background: #eaf0f8;
+    border-radius: var(--radius_default);
+    border: fn.rem(1) solid var(--color_sub);
+  }
+
+  [data-theme="dark"] .home_relation .relation_pair {
+    background: #2a2a2a;
   }
 
   .home_relation .relation_down:not(.sales) {
