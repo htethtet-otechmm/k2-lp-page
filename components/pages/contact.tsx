@@ -1,6 +1,5 @@
 /** @format */
 "use client";
-import emailjs from "@emailjs/browser";
 import { useRef, useState, type FormEvent } from "react";
 import { ChevronDown } from "lucide-react";
 export default function ContactContent() {
@@ -12,48 +11,58 @@ export default function ContactContent() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     if (sending.current) return;
+
     const form = event.currentTarget;
+
     if (!form.reportValidity()) return;
+
     const data = new FormData(form);
     const value = (key: string) => String(data.get(key) ?? "").trim();
-    if (!value("from_name") || !value("message")) {
-      setStatus("error");
-      setFeedback("会社名・お名前とお問い合わせ内容をご記入ください。");
-      return;
-    }
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    if (!serviceId || !templateId || !publicKey) {
+
+    if (!value("from_name") || !value("reply_to") || !value("message")) {
       setStatus("error");
       setFeedback(
-        "現在フォームから送信できません。時間をおいて再度お試しください。",
+        "会社名・お名前、メールアドレス、お問い合わせ内容をご記入ください。",
       );
       return;
     }
+
     sending.current = true;
     setStatus("sending");
     setFeedback("");
+
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          kind: "contact",
           from_name: value("from_name"),
           reply_to: value("reply_to"),
           phone: value("phone"),
           service: value("service") || "未選択",
           message: value("message"),
-        },
-        { publicKey },
-      );
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send email.");
+      }
+
       form.reset();
       setStatus("success");
       setFeedback(
         "お問い合わせを送信しました。担当者より折り返しご連絡いたします。",
       );
-    } catch {
+    } catch (error) {
+      console.error("Contact form error:", error);
+
       setStatus("error");
       setFeedback(
         "送信に失敗しました。入力内容は保持されています。時間をおいて再度お試しください。",

@@ -24,51 +24,22 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Contact form — EmailJS
+## Contact forms — Gmail SMTP
 
-Copy `.env.example` to `.env.local` and fill in your EmailJS service ID,
-template ID, and public key. Restart the development server after changing
-these values; rebuild the application for production. These public values
-are included in the browser bundle. No private EmailJS key is needed.
+Copy `.env.example` to `.env.local` and configure `SMTP_HOST`, `SMTP_PORT`,
+`SMTP_USER`, `SMTP_PASS`, and `SMTP_RECEIVER_EMAIL`. For Gmail, `SMTP_PASS`
+must be a Google App Password (Google 2-Step Verification must be enabled), not
+the account's normal password. `SMTP_FROM_EMAIL` is optional and defaults to
+`SMTP_USER`. Restart the development server after changing these values, and
+add the same server-side variables to the production deployment.
 
-Configure the recipient address in your EmailJS template. Set Reply-To to
-`{{reply_to}}` and use these variables in the subject/body:
+Both forms post to `/api/contact`. The API sends an internal notification and a
+customer auto-reply through Gmail SMTP. Internal notifications set Reply-To to
+the address entered by the visitor. SMTP credentials stay on the server and are
+never exposed in the browser bundle.
 
-```text
-お問い合わせ：{{from_name}}
-
-会社名・お名前: {{from_name}}
-メールアドレス: {{reply_to}}
-電話番号: {{phone}}
-ご興味のあるサービス: {{service}}
-
-{{message}}
-```
-
-Use EmailJS's normal double-brace variables so user input is escaped. The
-contact form uses the official [EmailJS browser SDK](https://www.emailjs.com/docs/sdk/send/).
-To verify delivery after configuration, submit the contact form with a test
-message and check the configured recipient inbox. Without configuration,
-the form shows an error and does not attempt to send.
-
-### Brochure requests
-
-The brochure form uses the same EmailJS service and public key as the contact
-form. By default it uses `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, with company,
-industry, prefecture, job title and request reason included in `{{message}}`.
-Name, email and phone use the template's separate fields, and `{{service}}`
-is set to `資料請求`, so these details are not repeated in the message.
-
-Optionally set `NEXT_PUBLIC_EMAILJS_BROCHURE_TEMPLATE_ID` to use a dedicated
-template. It receives `{{company}}`, `{{from_name}}`, `{{reply_to}}`, `{{phone}}`,
-`{{industry}}`, `{{prefecture}}`, `{{job_title}}`, `{{reason}}`, `{{service}}`,
-and `{{message}}`. Configure the recipient in EmailJS and Reply-To as
-`{{reply_to}}`. Restart/rebuild after changing environment variables.
-Display either `{{message}}` or the individual brochure detail fields to avoid
-duplicating those details in a custom template.
-
-This sends the request to your team; it does not automatically attach or
-email the PDF to the requester. The team can follow up as described on the page.
+This sends each request to your team; it does not automatically attach or email
+the PDF to the requester. The team can follow up as described on the page.
 
 ## Learn More
 

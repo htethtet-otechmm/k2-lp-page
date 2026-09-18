@@ -1,5 +1,4 @@
 /** @format */
-import emailjs from "@emailjs/browser";
 import { useRef, useState, type FormEvent } from "react";
 import { ChevronDown } from "lucide-react";
 export default function BrochureContent() {
@@ -11,95 +10,73 @@ export default function BrochureContent() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     if (sending.current) return;
+
     const form = event.currentTarget;
+
     if (!form.reportValidity()) return;
+
     const data = new FormData(form);
     const value = (key: string) => String(data.get(key) ?? "").trim();
-    if (!value("company") || !value("from_name") || !value("reason")) {
-      setStatus("error");
-      setFeedback("会社名・氏名・資料請求の理由をご記入ください。");
-      return;
-    }
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID?.trim();
-    const templateId =
-      process.env.NEXT_PUBLIC_EMAILJS_BROCHURE_TEMPLATE_ID?.trim() ||
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID?.trim();
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY?.trim();
-    if (!serviceId || !templateId || !publicKey) {
+
+    if (
+      !value("company") ||
+      !value("from_name") ||
+      !value("reply_to") ||
+      !value("reason")
+    ) {
       setStatus("error");
       setFeedback(
-        "現在フォームから送信できません。時間をおいて再度お試しください。",
+        "会社名・氏名・メールアドレス・資料請求の理由をご記入ください。",
       );
       return;
     }
+
     sending.current = true;
     setStatus("sending");
     setFeedback("");
+
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          kind: "brochure",
+          company: value("company"),
           from_name: value("from_name"),
           reply_to: value("reply_to"),
           phone: value("phone"),
-          service: "資料請求",
-          company: value("company"),
           industry: value("industry") || "未選択",
           prefecture: value("prefecture") || "未選択",
           job_title: value("job_title") || "未選択",
           reason: value("reason"),
-          // The email template already displays name, email, phone and service.
-          message: [
-            `会社名: ${value("company")}`,
-            `業種: ${value("industry") || "未選択"}`,
-            `都道府県: ${value("prefecture") || "未選択"}`,
-            `役職: ${value("job_title") || "未選択"}`,
-            "",
-            "資料請求の理由:",
-            value("reason"),
-          ].join("\n"),
-        },
-        { publicKey },
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send email.");
+      }
+
+      form.reset();
+      setStatus("success");
+      setFeedback(
+        "資料請求を受け付けました。担当者よりご入力のメールアドレス宛に資料をお送りします。",
       );
-    } catch (error: unknown) {
-      const errorStatus =
-        error && typeof error === "object" && "status" in error
-          ? Number(error.status)
-          : 0;
-      // Report the provider response for diagnosis, never the submitted form data.
-      if (process.env.NODE_ENV === "development") {
-        console.error("Brochure EmailJS request failed:", error);
-      }
+    } catch (error) {
+      console.error("Brochure form error:", error);
+
       setStatus("error");
-      if (errorStatus === 429) {
-        setFeedback(
-          "送信回数の上限に達しています。しばらくしてから再度お試しいただくか、お問い合わせください。（エラー: 429）入力内容は保持されています。",
-        );
-      } else if ([400, 401, 403, 404, 422].includes(errorStatus)) {
-        setFeedback(
-          `現在フォームから送信できません。お問い合わせ窓口までご連絡ください。（エラー: ${errorStatus}）入力内容は保持されています。`,
-        );
-      } else if (!errorStatus) {
-        setFeedback(
-          "送信を確認できませんでした。通信環境やブラウザの通信制限をご確認ください。入力内容は保持されています。",
-        );
-      } else {
-        setFeedback(
-          `送信に失敗しました。時間をおいて再度お試しください。（エラー: ${errorStatus}）入力内容は保持されています。`,
-        );
-      }
-      return;
+      setFeedback(
+        "送信に失敗しました。入力内容は保持されています。時間をおいて再度お試しください。",
+      );
     } finally {
       sending.current = false;
     }
-    // A UI reset must not turn an accepted email into a reported send failure.
-    setStatus("success");
-    setFeedback(
-      "資料請求を受け付けました。担当者よりご入力のメールアドレス宛に資料をお送りします。",
-    );
-    form.reset();
   };
 
   return (
